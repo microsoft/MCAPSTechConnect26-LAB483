@@ -416,3 +416,4 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+src/agent-framework/begin/appPackage/build/appPackage.local.zip
