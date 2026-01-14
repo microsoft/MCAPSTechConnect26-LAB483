@@ -222,26 +222,25 @@ try {
     }
 
     # Get outputs from Bicep deployment
-    Write-Step "Retrieving connection details from deployment outputs..."
+    Write-Step "Retrieving connection details..."
     $endpoint = $deployment.properties.outputs.endpoint.value
-    $apiKey = $deployment.properties.outputs.apiKey.value
-    $aiHubName = $deployment.properties.outputs.aiHubName.value
-    $aiProjectName = $deployment.properties.outputs.aiProjectName.value
+
+    # Retrieve API key directly using Azure CLI (secure outputs are masked in Bicep)
+    $apiKey = az cognitiveservices account keys list `
+        --name $OpenAIServiceName `
+        --resource-group $ResourceGroupName `
+        --query "key1" `
+        --output tsv
 
     # Display results
     Write-Host "`n╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Green
     Write-Host "║                 DEPLOYMENT SUCCESSFUL                     ║" -ForegroundColor Green
     Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Green
 
-    Write-Host "`nAzure AI Foundry Resources:" -ForegroundColor Cyan
+    Write-Host "`nAzure OpenAI Details:" -ForegroundColor Cyan
     Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Gray
     Write-Host "Resource Group:     " -NoNewline -ForegroundColor White
     Write-Host $ResourceGroupName -ForegroundColor Yellow
-    Write-Host "AI Hub:             " -NoNewline -ForegroundColor White
-    Write-Host $aiHubName -ForegroundColor Yellow
-    Write-Host "AI Project:         " -NoNewline -ForegroundColor White
-    Write-Host $aiProjectName -ForegroundColor Yellow
-    Write-Host "`nAzure OpenAI Details:" -ForegroundColor Cyan
     Write-Host "Service Name:       " -NoNewline -ForegroundColor White
     Write-Host $OpenAIServiceName -ForegroundColor Yellow
     Write-Host "Location:           " -NoNewline -ForegroundColor White
@@ -260,17 +259,13 @@ try {
     # Output connection information to file
     $outputFile = Join-Path $PSScriptRoot "azure-openai-connection.txt"
     $connectionInfo = @"
-Azure AI Foundry & Azure OpenAI Connection Information
+Azure OpenAI Connection Information
 Generated: $(Get-Date -Format "yyyy-MM-dd HH:mm:ss")
 
-=== Azure AI Foundry Resources ===
-Resource Group: $ResourceGroupName
-AI Hub: $aiHubName
-AI Project: $aiProjectName
-Location: $Location
-
 === Azure OpenAI Details ===
+Resource Group: $ResourceGroupName
 Service Name: $OpenAIServiceName
+Location: $Location
 Model: $ModelName ($ModelVersion)
 Deployment Name: $DeploymentName
 

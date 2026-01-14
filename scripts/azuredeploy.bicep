@@ -19,6 +19,7 @@ param deploymentName string = 'gpt4-deployment'
   'gpt-4-32k'
   'gpt-4-turbo'
   'gpt-4o'
+  'gpt-4.1'
 ])
 param modelName string = 'gpt-4o'
 
