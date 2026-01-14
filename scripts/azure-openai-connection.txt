@@ -1,0 +1,35 @@
+Azure AI Foundry & Azure OpenAI Connection Information
+Generated: 2026-01-14 18:34:39
+
+=== Azure AI Foundry Resources ===
+Resource Group: rg-aifoundry-4702
+AI Hub: aihub-pck3ywuo3dco4
+AI Project: aiproject-pck3ywuo3dco4
+Location: eastus
+
+=== Azure OpenAI Details ===
+Service Name: aoai-70816
+Model: gpt-4.1 (2025-04-14)
+Deployment Name: aoai-deployment-20260114-183142
+
+ENDPOINT=https://aoai-70816.openai.azure.com/
+API_KEY=<RETRIEVE_MANUALLY>
+
+Example Usage (cURL):
+curl https://aoai-70816.openai.azure.com//openai/deployments/aoai-deployment-20260114-183142/chat/completions?api-version=2024-02-15-preview \
+  -H "Content-Type: application/json" \
+  -H "api-key: <RETRIEVE_MANUALLY>" \
+  -d '{
+    "messages": [{"role": "user", "content": "Hello!"}],
+    "max_tokens": 100
+  }'
+
+Environment Variables (PowerShell):
+$env:AZURE_OPENAI_ENDPOINT = "https://aoai-70816.openai.azure.com/"
+$env:AZURE_OPENAI_API_KEY = "<RETRIEVE_MANUALLY>"
+$env:AZURE_OPENAI_DEPLOYMENT_NAME = "aoai-deployment-20260114-183142"
+
+Environment Variables (Bash):
+export AZURE_OPENAI_ENDPOINT="https://aoai-70816.openai.azure.com/"
+export AZURE_OPENAI_API_KEY="<RETRIEVE_MANUALLY>"
+export AZURE_OPENAI_DEPLOYMENT_NAME="aoai-deployment-20260114-183142"
