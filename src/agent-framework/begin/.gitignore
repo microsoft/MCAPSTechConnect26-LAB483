@@ -10,3 +10,5 @@ obj/
 
 # Conversation transcripts
 msteams_COPILOT/
+msteams/
+webchat/
