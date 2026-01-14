@@ -4,8 +4,7 @@ In this lab you will build, test, and deploy as custom engine agent you will dev
 
 In this lab you will learn how to:
 
-!!! pied-piper "Disclaimer"
-    These samples and labs are intended for instructive and demonstration purposes and are not intended for use in production. Do not put them into production without upgrading them to production quality.
+> [!Alert] These samples and labs are intended for instructive and demonstration purposes and are not intended for use in production. Do not put them into production without upgrading them to production quality.
 
 
 ## Exercise 1 : Setup Microsoft Teams
