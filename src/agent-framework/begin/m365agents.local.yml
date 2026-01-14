@@ -86,18 +86,6 @@ provision:
           ApiKey: ${{SECRET_MODELS_API_KEY}}
           LanguageModel:
             Name: ${{LANGUAGE_MODEL_NAME}}
-          VisionModel:
-            Name: ${{VISION_MODEL_NAME}}
-          EmbeddingModel:
-            Name: ${{EMBEDDING_MODEL_NAME}}
-        AzureStorage:
-          ConnectionString: ${{AZURE_STORAGE_CONNECTION_STRING}}
-          StorageAccountName: ${{AZURE_STORAGE_ACCOUNT_NAME}}
-          ClaimsContainerName: claims-documents
-          StateContainerName: state
-        AzureAISearch:
-          Endpoint: ${{AZURE_AI_SEARCH_ENDPOINT}}
-          ApiKey: ${{AZURE_AI_SEARCH_API_KEY}}
 
 
   - uses: teamsApp/validateManifest
