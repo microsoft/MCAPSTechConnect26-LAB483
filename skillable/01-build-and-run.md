@@ -4,12 +4,12 @@ In this lab, you'll build and run a custom engine agent using the **Microsoft 36
 
 The Zava Insurance Agent is designed to help insurance adjusters streamline claims processing. In this initial lab, you'll start with a basic conversational agent that can greet users and provide information using AI-powered responses.
 
-???+ info "What are the Microsoft 365 Agents SDK and Agents Framework?"
-    **Microsoft 365 Agents SDK** provides the container and scaffolding to deploy agents across Microsoft 365 channels (Teams, Copilot, etc.), handling activities, events, and communication. It's AI-agnostic, allowing you to use any AI services you choose.
-    
-    **Agents Framework** is an open-source development kit for building AI agents with LLMs, tool calling, and multi-agent workflows. It's the successor to Semantic Kernel and AutoGen, providing the AI capabilities and agent logic.
-    
-    Together, they allow you to build intelligent agents with the Agents Framework and deploy them to Microsoft 365 using the Agents SDK.
+> [!Knowledge] **What are the Microsoft 365 Agents SDK and Agents Framework?**
+**Microsoft 365 Agents SDK** provides the container and scaffolding to deploy agents across Microsoft 365 channels (Teams, Copilot, etc.), handling activities, events, and communication. It's AI-agnostic, allowing you to use any AI services you choose.
+
+**Agents Framework** is an open-source development kit for building AI agents with LLMs, tool calling, and multi-agent workflows. It's the successor to Semantic Kernel and AutoGen, providing the AI capabilities and agent logic.
+
+Together, they allow you to build intelligent agents with the Agents Framework and deploy them to Microsoft 365 using the Agents SDK.
 
 ## Exercise 1: Clone and Explore the Project
 
@@ -27,14 +27,14 @@ Let's start by cloning the lab repository and navigating to the Agent Framework 
 cd C:\
 ``` 
 
-2️⃣ Clone the repository:
+3️⃣ Clone the repository:
 
 ```bash
-git clone https://github.com/microsoft/copilot-camp.git
+git clone https://github.com/microsoft/MCAPSTechConnect26-LAB483.git
 cd copilot-camp/src/agent-framework/begin
 ```
 
-3️⃣ Open the project in Visual Studio Code:
+4️⃣ Open the project in Visual Studio Code:
 
 ```bash
 code .
@@ -62,7 +62,6 @@ begin/
 └── m365agents.local.yml                # M365 Agents provisioning config
 ```
 
-<cc-end-step lab="baf1" exercise="1" step="2" />
 
 ### Step 3: Understand the Agent Implementation
 
@@ -125,8 +124,6 @@ Key points:
 - The `getDate()` method is static and returns `DateTime.Now` as a formatted string
 
 This plugin demonstrates how the agent can access system information to answer user queries.
-
-<cc-end-step lab="baf1" exercise="1" step="4" />
 
 ### Step 5: View the App Manifest and Conversation Starters
 
@@ -215,18 +212,15 @@ The agent uses environment files to store configuration. Let's set them up.
 
 3️⃣ Copy `.env.local.sample` to `.env.local`:
 
-**Windows PowerShell:**
 ```powershell
 Copy-Item env/.env.local.sample env/.env.local
 ```
 
 4️⃣ Copy `.env.local.user.sample` to `.env.local.user`:
 
-**Windows PowerShell:**
 ```powershell
 Copy-Item env/.env.local.user.sample env/.env.local.user
 ```
-
 
 ### Step 2: Add Your Azure AI Credentials
 
@@ -234,19 +228,19 @@ Now let's configure the agent to use your Azure AI Foundry deployment.
 
 1️⃣ Open `env/.env.local` in Visual Studio Code.
 
-2️⃣ Find the `MODELS_ENDPOINT` variable and update it with your Azure AI endpoint from Lab BAF0:
+2️⃣ Find the `MODELS_ENDPOINT` variable and update it with your Azure AI endpoint from the prerequisites:
 
 ```bash
 MODELS_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
 ```
 
-!!! tip "Finding Your Endpoint"
-    If you don't remember your endpoint:
+> [!Hint] **Finding Your Endpoint**
+If you don't remember your endpoint:
 
-    1. Go to [Azure AI Foundry](https://ai.azure.com)
-    2. Select your project
-    3. Go to **Settings** → **Properties**
-    4. Copy the **Endpoint** URL
+1. Go to [Azure AI Foundry](https://ai.azure.com)
+2. Select your project
+3. Go to **Settings** → **Properties**
+4. Copy the **Endpoint** URL
 
 3️⃣ Open `env/.env.local.user` in Visual Studio Code.
 
@@ -256,8 +250,8 @@ MODELS_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
 SECRET_MODELS_API_KEY=your-api-key-here
 ```
 
-!!! warning "Keep Your API Key Secret"
-    The `.env.local.user` file contains sensitive information and is already included in `.gitignore`. Never commit this file to source control!
+> [!Alert] **Keep Your API Key Secret**
+The `.env.local.user` file contains sensitive information and is already included in `.gitignore`. Never commit this file to source control!
 
 ### Step 3: Sign in to Microsoft 365 and Azure
 
@@ -273,11 +267,11 @@ The Microsoft 365 Agents Toolkit needs to authenticate with both Microsoft 365 a
 
 For both sign-ins, use the following credentials:
 
-    - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
-    - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
+ - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+ - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
 
-!!! note "First Time Sign-In"
-    The first time you sign in, you may need to grant permissions to the Microsoft 365 Agents Toolkit extension.
+> [!Note] **First Time Sign-In**
+> The first time you sign in, you may need to grant permissions to the Microsoft 365 Agents Toolkit extension.
 
 ## Exercise 3: Run and Test the Agent
 
@@ -291,8 +285,8 @@ Let's run the agent using the F5 debug experience.
 
 2️⃣ When prompted to select a debug target, choose **(Preview) Debug in Copilot (Edge)**.
 
-!!! tip "Debug Target Options"
-    You may see multiple options like "Debug in Teams (Edge)", "Debug in Teams (Chrome)", etc. Make sure to select **(Preview) Debug in Copilot (Edge)** to test your agent in Microsoft 365 Copilot.
+> [!Hint] **Debug Target Options**
+> You may see multiple options like "Debug in Teams (Edge)", "Debug in Teams (Chrome)", etc. Make sure to select **(Preview) Debug in Copilot (Edge)** to test your agent in Microsoft 365 Copilot.
 
 3️⃣ The first time you run the agent, the Microsoft 365 Agents Toolkit will:
 
@@ -303,12 +297,12 @@ Let's run the agent using the F5 debug experience.
 
 This provisioning process usually takes 2-3 minutes.
 
-!!! tip "Provisioning Azure Resources"
-    During first run, the toolkit creates:
-
-    - **Azure Bot Service** - Handles message routing
-    - **App Registration** - Manages authentication
-    - **Dev Tunnel** - Creates a secure tunnel to your local machine
+> [!Hint] **Provisioning Azure Resources**
+> During first run, the toolkit creates:
+>
+> - **Azure Bot Service** - Handles message routing
+> - **App Registration** - Manages authentication
+> - **Dev Tunnel** - Creates a secure tunnel to your local machine
 
 4️⃣ Watch the **Terminal** output in Visual Studio Code. You should see:
 
@@ -353,15 +347,11 @@ The agent should use its AI knowledge to provide a helpful explanation about ins
 
 The agent should politely indicate that this is outside its scope as an insurance assistant.
 
-<cc-end-step lab="baf1" exercise="3" step="2" />
-
 ### Step 3: Check the Debug Output
 
 1️⃣ Return to Visual Studio Code and check the **Debug Console**.
 
 2️⃣ Notice logs showing plugin calls, AI responses, and message processing in real-time.
-
-<cc-end-step lab="baf1" exercise="3" step="3" />
 
 ## Exercise 4: Customize Your Agent
 
