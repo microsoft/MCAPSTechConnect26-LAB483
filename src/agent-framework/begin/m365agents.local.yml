@@ -86,6 +86,9 @@ provision:
           ApiKey: ${{SECRET_MODELS_API_KEY}}
           LanguageModel:
             Name: ${{LANGUAGE_MODEL_NAME}}
+        AzureAISearch:
+          Endpoint: ${{AZURE_AI_SEARCH_ENDPOINT}}
+          ApiKey: ${{SECRET_AZURE_AI_SEARCH_API_KEY}}
 
 
   - uses: teamsApp/validateManifest

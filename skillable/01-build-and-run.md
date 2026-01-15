@@ -1,4 +1,4 @@
-# Build and Run Your First Agent
+# Exercise 1 - Build and Run Your First Agent
 
 In this lab, you'll build and run a custom engine agent using the **Microsoft 365 Agents SDK** with the **Agents Framework**. You'll explore the starter project, understand the core components, and see your agent come to life in Microsoft 365 Copilot.
 
@@ -17,9 +17,15 @@ In this exercise, you'll clone the Copilot Camp repository and explore the start
 
 ### Step 1: Clone the Repository
 
-Let's start by cloning the Copilot Camp repository and navigating to the Agent Framework starter project.
+Let's start by cloning the lab repository and navigating to the Agent Framework starter project.
 
 1️⃣ Open a terminal or command prompt.
+
+2️⃣ Type the following command to move into the C: folder:
+
+```bash
+cd C:\
+``` 
 
 2️⃣ Clone the repository:
 
@@ -33,8 +39,6 @@ cd copilot-camp/src/agent-framework/begin
 ```bash
 code .
 ```
-
-<cc-end-step lab="baf1" exercise="1" step="1" />
 
 ### Step 2: Explore the Project Structure
 
@@ -86,8 +90,6 @@ These instructions tell the AI how to behave and what tools it can use.
 - It adds `DateTimeFunctionTool.getDate` the same way
 
 This is where we register **plugins** (tools) that the AI can call during conversations.
-
-<cc-end-step lab="baf1" exercise="1" step="3" />
 
 ### Step 4: Explore the Plugins
 
@@ -168,8 +170,6 @@ These conversation starters help guide users on how to interact with your agent.
 
 4️⃣ Notice the `copilotAgents.declarativeAgent` section that defines your agent as a custom engine agent with specific capabilities.
 
-<cc-end-step lab="baf1" exercise="1" step="5" />
-
 ### Step 6: Review the Application Entry Point
 
 Let's see how everything comes together in Program.cs.
@@ -198,8 +198,6 @@ Let's see how everything comes together in Program.cs.
 
 This creates the connection to Azure OpenAI, which powers the agent's AI capabilities.
 
-<cc-end-step lab="baf1" exercise="1" step="6" />
-
 ## Exercise 2: Configure the Agent
 
 Before running the agent, you need to configure it with your Azure AI credentials.
@@ -222,11 +220,6 @@ The agent uses environment files to store configuration. Let's set them up.
 Copy-Item env/.env.local.sample env/.env.local
 ```
 
-**macOS/Linux:**
-```bash
-cp env/.env.local.sample env/.env.local
-```
-
 4️⃣ Copy `.env.local.user.sample` to `.env.local.user`:
 
 **Windows PowerShell:**
@@ -234,12 +227,6 @@ cp env/.env.local.sample env/.env.local
 Copy-Item env/.env.local.user.sample env/.env.local.user
 ```
 
-**macOS/Linux:**
-```bash
-cp env/.env.local.user.sample env/.env.local.user
-```
-
-<cc-end-step lab="baf1" exercise="2" step="1" />
 
 ### Step 2: Add Your Azure AI Credentials
 
@@ -272,8 +259,6 @@ SECRET_MODELS_API_KEY=your-api-key-here
 !!! warning "Keep Your API Key Secret"
     The `.env.local.user` file contains sensitive information and is already included in `.gitignore`. Never commit this file to source control!
 
-<cc-end-step lab="baf1" exercise="2" step="2" />
-
 ### Step 3: Sign in to Microsoft 365 and Azure
 
 The Microsoft 365 Agents Toolkit needs to authenticate with both Microsoft 365 and Azure.
@@ -286,10 +271,13 @@ The Microsoft 365 Agents Toolkit needs to authenticate with both Microsoft 365 a
 
 4️⃣ Click **Sign in to Azure** and complete the sign-in flow.
 
+For both sign-ins, use the following credentials:
+
+    - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+    - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
+
 !!! note "First Time Sign-In"
     The first time you sign in, you may need to grant permissions to the Microsoft 365 Agents Toolkit extension.
-
-<cc-end-step lab="baf1" exercise="2" step="3" />
 
 ## Exercise 3: Run and Test the Agent
 
@@ -310,7 +298,7 @@ Let's run the agent using the F5 debug experience.
 
 - Prompt you to select an **Azure subscription**
 - Ask you to create a new **resource group** or select existing one
-- Select a **region** for your resources (choose one close to your Azure AI Foundry project)
+- Select a **region** for your resources (choose **East US**, same as your Microsoft Foundry project)
 - Provision Azure resources (Azure Bot Service, App Registration)
 
 This provisioning process usually takes 2-3 minutes.
@@ -337,19 +325,17 @@ This provisioning process usually takes 2-3 minutes.
 
 7️⃣ After installation, click **Open in Copilot** or **Chat**.
 
-<cc-end-step lab="baf1" exercise="3" step="1" />
-
 ### Step 2: Test Basic Conversations
 
 Now let's interact with your agent!
 
 1️⃣ In Microsoft 365 Copilot, you should see your agent with conversation starters in your chat window.
 
-![Conversation starters in Microsoft 365 Copilot](../../../assets/images/agent-framework/BAF1-test1.png)
+![Conversation starters in Microsoft 365 Copilot](images/01-build-and-run/BAF1-test1.png)
 
 2️⃣ Select "What can you do?" to see the welcome message:
 
-![Conversation starters in Microsoft 365 Copilot](../../../assets/images/agent-framework/BAF1-test2.png)
+![Conversation starters in Microsoft 365 Copilot](images/01-build-and-run//BAF1-test2.png)
 
 3️⃣ Try asking: **"What's today's date?"**
 
@@ -391,11 +377,7 @@ Let's make a simple modification to personalize the agent.
 
 4️⃣ Save, press **F5** to restart, and type **"start over"** in Copilot to see your change.
 
-<cc-end-step lab="baf1" exercise="4" step="1" />
-
----8<--- "b-congratulations.md"
-
-You have completed Lab BAF1 - Build and Run Your First Agent!
+You have completed the task Build and Run Your First Agent!
 
 You've learned how to:
 
@@ -407,7 +389,3 @@ You've learned how to:
 - ✅ Make simple modifications to customize behavior
 
 In the next lab, you'll add more powerful capabilities by integrating document search with Azure AI Search and gpt-4.1!
-
-<cc-next url="../02-add-claim-search" />
-
-<img src="https://m365-visitor-stats.azurewebsites.net/copilot-camp/custom-engine/agent-framework/01-build-and-run" />

@@ -22,43 +22,88 @@ You can complete these labs on a Windows, macOS, or Linux machine. Below you can
 
 ## Exercise 3: Setup Azure Environment
 
-To complete the exercises in this path, you'll need an Azure subscription to create Microsoft Foundry resources and deploy AI models.
-The lab comes with a script that will take care of deploying the required resources for you.
-Here are the steps to follow:
-
-1. Click on the Terminal icon which is pinned in the taskbar
-2. Type the following command to navigate to the lab folder:
-
-    +++cd C:\MCAPSTechConnect26-LAB483-main\scripts+++
-
-3. Type the following command to launch the script:
-
-    +++.\Deploy-AzureAIFoundry.ps1+++
-
-4. For security reasons, you will be asked a confirmation to proceed with the script execution. Type **R** and press Enter.
-5. After checking that the Azure CLI is installed, the script will prompt you to login to your Azure account. 
-
-    ![The Azure CLI sign-in](images/00-prerequisites/cli-sign-in.png)
-
-6. Choose **Work or school account** and click **Continue**.
-7. Use the following credentials and press Sign in:
+To complete the exercises in this path, you'll need an Azure subscription to create Microsoft Foundry resources and deploy AI models. The lab environment comes with an Azure subscription pre-configured for you with the following credentials:
 
     - Username: +++@lab.CloudPortalCredential(User1).Username+++
     - Temporary Access Pass: +++@lab.CloudPortalCredential(User1).TAP+++
-8. You will be asked if you want to sign in to all apps, websites, and services on this device. Choose **No, this app only**.
+  
+Use them every time you are prompted to sign in to Azure or to Microsoft Foundry during the labs.
 
-    ![Windows will ask you if you want to register the account](images/00-prerequisites/sign-in-all.png)
+### Step 1: Create Microsoft Foundry Project and Deploy Model
 
-9. After the sign in is completed, the script will ask you to choose one of the available Azure subscriptions. There will be only one, so type **1** and press Enter.
-10. The script will now continue the execution and create a new resource group on Azure with an Azure OpenAI resource in it. Once the script is completed, you will see a summary of the created resources.
+For this lab path, you'll need a Microsoft Foundry project with a deployed language model.
 
-    ![The script summary](images/00-prerequisites/script-summary.png)
+1️⃣ Navigate to [Microsoft Foundry](https://ai.azure.com){target=_blank} and sign in with your Azure account.
+2️⃣ Select **+ Create new**, then **Microsoft Foundry resource** and then **Next**.
 
-    The script will also create a file called **azure-resources.txt** with the same summary for your reference.
-    You will need them later to properly configure the agent.
+3️⃣ Leave the project name as recommended and select **Create**. This will scaffold a new project for you in Microsoft Foundry, it usually takes 3-5 minutes. Choose **East US** region as it supports all the models you'll need throughout the labs.
 
+4️⃣ Once your project is created, navigate to **Deployments** in the left sidebar.
 
+5️⃣ Click **+ Deploy model** and select **Deploy base model**.
 
-You have completed Lab BAF0 - Prerequisites!
+6️⃣ Search for **gpt-4.1** and select the **gpt-4.1** model, then select **Confirm** and **Deploy**.
 
-You are now ready to proceed to Lab BAF1 - Build and Run Your First Agent. Select Next.
+!!! important "Model Selection"
+    Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
+
+!!! tip "Save Your Credentials"
+    You'll need the following information from your Microsoft Foundry project:
+
+    - **Endpoint URL**: Found in project settings → Properties (e.g., `https://your-resource.cognitiveservices.azure.com/`)
+    - **API Key**: Found under "Keys and Endpoint" section
+    - **Model Deployment Name**: The name you gave to your gpt-4.1 deployment
+    
+    Save these values in a secure location - you'll need them in the next lab!
+
+!!! note "Additional services"
+    You'll create other Azure services (like Azure AI Search) in later labs when you need them.
+
+### Step 3: Configure Content Safety Filter
+
+The insurance domain uses terms like "injury", "collision", "damage" that may trigger default content filters. You need to create a custom content filter with lower thresholds.
+
+1️⃣ In Microsoft Foundry, navigate to your project.
+
+2️⃣ In the left sidebar, select **Guardrails + Controls** → **Content filters**.
+
+3️⃣ Click **+ Create content filter**.
+
+4️⃣ Name your filter **InsuranceLowFilter**.
+
+5️⃣ Configure the following settings for **Input filters** (what users send):
+
+- **Violence**: Set threshold to **Low**
+- **Hate**: Set threshold to **Low**
+- **Sexual**: Set threshold to **Low**
+- **Self-harm**: Set threshold to **Low**
+- Prompt shields for jailbreak attacks: Off
+- Prompt shields for indirect attacks: Off
+
+6️⃣ Select **Next** and configure the same settings for **Output filters** (what AI generates):
+
+- **Violence**: Set threshold to **Low**
+- **Hate**: Set threshold to **Low**
+- **Sexual**: Set threshold to **Low**
+- **Self-harm**: Set threshold to **Low**
+- Protected material for text: Off
+- Protected material for code: Off
+- Groundedness (Preview): Off
+
+7️⃣ Select **Next**.
+
+8️⃣ In Apply filter to deployments, select your **gpt-4.1** deployment.
+
+9️⃣ Select **Replace** to apply the new filter to the deployment.
+
+🔟 Finally, select **Create filter**.
+
+!!! warning "Why This Is Needed"
+    Insurance claims contain legitimate terms like "injury", "accident", "collision", "bodily harm" that describe real incidents. Default content filters may block these terms. Setting thresholds to **Low** only blocks extreme content while allowing normal insurance terminology.
+
+!!! tip "Production Deployments"
+    In production, review your organization's content safety policies and adjust filter settings accordingly. This configuration is for development and testing purposes.
+
+You have completed the prerequisites!
+
+You are now ready to proceed to the next exercise - Build and Run Your First Agent. Select Next.
