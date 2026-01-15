@@ -235,7 +235,7 @@ MODELS_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
 > [!Hint] **Finding Your Endpoint**
 If you don't remember your endpoint:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com)
+1. Go to <[Azure AI Foundry](https://ai.azure.com)>
 2. Select your project
 3. Go to **Settings** → **Properties**
 4. Copy the **Endpoint** URL

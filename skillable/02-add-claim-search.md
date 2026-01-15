@@ -19,7 +19,7 @@ Before we add the plugin, let's set up Azure AI Search with sample claims data.
 
 If you haven't created an Azure AI Search service yet (from Lab BAF0), create one now.
 
-1️⃣ Go to the [Azure Portal](https://portal.azure.com){target=_blank}.
+1️⃣ Go to the <[Azure Portal](https://portal.azure.com)>.
 
 2️⃣ Click **+ Create a resource** → Search for **Azure AI Search** → Click **Create**.
 
@@ -919,7 +919,7 @@ You may see additional output related to policies if your KnowledgeBaseService i
 
 5️⃣ **Verify in Azure Portal** (optional but recommended):
 
-- Go to [Azure Portal](https://portal.azure.com){target=_blank} and search the name of your Azure AI Search service
+- Go to <[Azure Portal](https://portal.azure.com)> and search the name of your Azure AI Search service
 - Click **Indexes** in the left menu and you should see **claims-index** listed. Click on the index name and select **Search** to view details and see the 35 indexed documents
 - Go back to your search service and click **Agentic retrieval** > **Knowledge Bases** to see **zava-insurance-kb** listed
 - You can also use the **Search Explorer** to test queries directly against your index
