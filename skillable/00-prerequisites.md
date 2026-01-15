@@ -24,8 +24,8 @@ You can complete these labs on a Windows, macOS, or Linux machine. Below you can
 
 To complete the exercises in this path, you'll need an Azure subscription to create Microsoft Foundry resources and deploy AI models. The lab environment comes with an Azure subscription pre-configured for you with the following credentials:
 
-    - Username: @lab.CloudPortalCredential(User1).Username
-    - Temporary Access Pass: @lab.CloudPortalCredential(User1).TAP
+- Username: +++@lab.CloudPortalCredential(User1).Username+++
+- Temporary Access Pass: +++@lab.CloudPortalCredential(User1).TAP+++
   
 Use them every time you are prompted to sign in to Azure or to Microsoft Foundry during the labs.
 
