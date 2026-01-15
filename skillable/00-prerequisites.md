@@ -45,19 +45,18 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 6️⃣ Search for **gpt-4.1** and select the **gpt-4.1** model, then select **Confirm** and **Deploy**.
 
 > [!Alert] **Model Selection**
-Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
+> Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
 
 > [!Hint]  **Save Your Credentials**
-You'll need the following information from your Microsoft Foundry project:
-
-- **Endpoint URL**: Found in project settings → Properties (e.g., `https://your-resource.cognitiveservices.azure.com/`)
-- **API Key**: Found under "Keys and Endpoint" section
-- **Model Deployment Name**: The name you gave to your gpt-4.1 deployment
+> You'll need the following information from your Microsoft Foundry project:
+> - **Endpoint URL**: Found in project settings → Properties (e.g., `https://your-resource.cognitiveservices.azure.com/`)
+> - **API Key**: Found under "Keys and Endpoint" section
+> - **Model Deployment Name**: The name you gave to your gpt-4.1 deployment
 
 Save these values in a secure location - you'll need them in the next lab!
 
 > [!Hint] **Additional services**
-You'll create other Azure services (like Azure AI Search) in later labs when you need them.
+> You'll create other Azure services (like Azure AI Search) in later labs when you need them.
 
 ### Step 3: Configure Content Safety Filter
 
@@ -99,10 +98,10 @@ The insurance domain uses terms like "injury", "collision", "damage" that may tr
 🔟 Finally, select **Create filter**.
 
 > [!Knowledge]  **Why This Is Needed**
-Insurance claims contain legitimate terms like "injury", "accident", "collision", "bodily harm" that describe real incidents. Default content filters may block these terms. Setting thresholds to **Low** only blocks extreme content while allowing normal insurance terminology.
+> Insurance claims contain legitimate terms like "injury", "accident", "collision", "bodily harm" that describe real incidents. Default content filters may block these terms. Setting thresholds to **Low** only blocks extreme content while allowing normal insurance terminology.
 
 > [!Hint] **Production Deployments**
-In production, review your organization's content safety policies and adjust filter settings accordingly. This configuration is for development and testing purposes.
+> In production, review your organization's content safety policies and adjust filter settings accordingly. This configuration is for development and testing purposes.
 
 You have completed the prerequisites!
 
