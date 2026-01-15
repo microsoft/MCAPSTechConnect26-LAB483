@@ -2,16 +2,14 @@
 
 In this lab, you'll enhance your Zava Insurance Agent by adding document search capabilities using Azure AI Search. You'll create a ClaimsPlugin that uses AI-powered retrieval to search through insurance claims, retrieve claim details, and identify claims with missing documentation.
 
-???+ info "Understanding Azure AI Search Concepts"
-    **Azure AI Search** is a cloud search service that provides infrastructure, APIs, and tools for building rich search experiences over your content.
-    
-    **Key Concepts:**
-    
-    - **Search Index**: A searchable collection of documents, similar to a database table. Each index contains documents with fields that can be searched, filtered, and sorted.
-    - **Knowledge Source**: A logical grouping that connects your data to an index. It defines where your data comes from and how it should be indexed.
-    - **Knowledge Base**: A unified interface that brings together multiple knowledge sources, allowing you to search across different data sources with a single query.
-    
-    In this lab, you'll create a **claims index** to store insurance claims data, configure a **knowledge source** to connect your data, and set up a **knowledge base** for unified retrieval. Your ClaimsPlugin will use these components to perform AI-powered searches.
+> [!Help] **Understanding Azure AI Search Concepts**
+>**Azure AI Search** is a cloud search service that provides infrastructure, APIs, and tools for building rich search experiences over your content.
+>**Key Concepts:**
+> - **Search Index**: A searchable collection of documents, similar to a database table. Each index contains documents with fields that can be searched, filtered, and sorted.
+> - **Knowledge Source**: A logical grouping that connects your data to an index. It defines where your data comes from and how it should be indexed.
+> - **Knowledge Base**: A unified interface that brings together multiple knowledge sources, allowing you to search across different data sources with a single query.
+
+In this lab, you'll create a **claims index** to store insurance claims data, configure a **knowledge source** to connect your data, and set up a **knowledge base** for unified retrieval. Your ClaimsPlugin will use these components to perform AI-powered searches.
 
 ## Exercise 1: Set Up Azure AI Search
 
@@ -71,9 +69,9 @@ AZURE_AI_SEARCH_ENDPOINT=https://your-search.search.windows.net
 AZURE_AI_SEARCH_API_KEY=your-primary-admin-key
 ```
 
-!!! tip "Finding Your Credentials"
-    - **Endpoint**: Azure Portal → Your Search Service → Overview → URL
-    - **API Key**: Azure Portal → Your Search Service → Keys → Primary Admin Key
+> [!Hint] **Finding Your Credentials**
+> - **Endpoint**: Azure Portal → Your Search Service → Overview → URL
+> - **API Key**: Azure Portal → Your Search Service → Keys → Primary Admin Key
 
 ## Exercise 2: Create the KnowledgeBaseService
 
@@ -81,17 +79,15 @@ The **KnowledgeBaseService** handles all interactions with Azure AI Search, incl
 
 ### Step 1: Create Complete KnowledgeBaseService
 
-??? note "What this code does"
-    The **KnowledgeBaseService** is the core service for Azure AI Search integration:
-    
-    - **Constructor**: Initializes connections to Azure AI Search and Azure OpenAI using configuration
-    - **EnsureClaimsIndexAsync**: Creates the search index with semantic and vector search (required by Knowledge Base API)
-    - **CreateKnowledgeSourcesAsync**: Sets up knowledge source that defines data fields for indexing
-    - **CreateKnowledgeBaseAsync**: Creates knowledge base with LLM model for answer synthesis
-    - **RetrieveAsync**: Main agentic retrieval method - uses LLM to search and synthesize answers with optional instructions for formatting
-    - **IndexClaimsDataAsync**: Loads and indexes sample claims data from JSON file
-    
-    This service provides complete Azure AI Search functionality with agentic retrieval capabilities.
+> [!Note] **What this code does**
+> The **KnowledgeBaseService** is the core service for Azure AI Search integration:
+> - **Constructor**: Initializes connections to Azure AI Search and Azure OpenAI using configuration
+> - **EnsureClaimsIndexAsync**: Creates the search index with semantic and vector search (required by Knowledge Base API)
+> - **CreateKnowledgeSourcesAsync**: Sets up knowledge source that defines data fields for indexing
+> - **CreateKnowledgeBaseAsync**: Creates knowledge base with LLM model for answer synthesis
+> - **RetrieveAsync**: Main agentic retrieval method - uses LLM to search and synthesize answers with optional instructions for formatting
+> - **IndexClaimsDataAsync**: Loads and indexes sample claims data from JSON file
+> This service provides complete Azure AI Search functionality with agentic retrieval capabilities.
 
 1️⃣ In VS Code, create a new folder **src/Services**.
 
@@ -578,14 +574,14 @@ Now let's create the ClaimsPlugin that uses the **KnowledgeBaseService** to prov
 
 ### Step 1: Create Complete ClaimsPlugin
 
-??? note "What this code does"
-    The **ClaimsPlugin** provides claim search capabilities to your agent:
-    
-    **SearchClaims**: Searches for claims by region, type, severity, or status - builds natural language query and uses agentic retrieval with structured output instructions
-    **GetClaimDetails**: Retrieves comprehensive information for a specific claim ID with detailed formatting instructions for the LLM
-    **NotifyUserAsync**: Helper method to send real-time status updates to users ("Searching...", "Retrieved data...") using StreamingResponse
-    
-    Each method has a **[Description]** attribute that tells the AI agent when and how to use the tool. The AI automatically decides which tool to call based on user intent.
+> [!Note] **What this code does**
+> The **ClaimsPlugin** provides claim search capabilities to your agent:
+>
+> **SearchClaims**: Searches for claims by region, type, severity, or status - builds natural language query and uses agentic retrieval with structured output instructions
+> **GetClaimDetails**: Retrieves comprehensive information for a specific claim ID with detailed formatting instructions for the LLM
+> **NotifyUserAsync**: Helper method to send real-time status updates to users ("Searching...", "Retrieved data...") using StreamingResponse
+>
+> Each method has a **[Description]** attribute that tells the AI agent when and how to use the tool. The AI automatically decides which tool to call based on user intent.
 
 1️⃣ Create a new file **src/Plugins/ClaimsPlugin.cs** and add the complete implementation:
 
@@ -760,18 +756,16 @@ namespace ZavaInsurance.Plugins
 }
 ```
 
-<cc-end-step lab="baf2" exercise="3" step="1" />
-
 ## Exercise 4: Register Services and Configure Agent
 
 Now let's wire everything together by registering services in Program.cs and adding the **ClaimsPlugin** to your agent.
 
 ### Step 1: Register KnowledgeBaseService and Initialize Data
 
-??? note "What this code does"
-    **Service Registration**: Registers **KnowledgeBaseService** as a singleton so it's available throughout the app
-    **Initialization**: Creates index → knowledge source → knowledge base → indexes sample data (must be done in this order)
-    **Error Handling**: Catches initialization errors without stopping the app (useful for development)
+> [!Note] **What this code does**
+> **Service Registration**: Registers **KnowledgeBaseService** as a singleton so it's available throughout the app
+> **Initialization**: Creates index → knowledge source → knowledge base → indexes sample data (must be done in this order)
+> **Error Handling**: Catches initialization errors without stopping the app (useful for development)
 
 1️⃣ Open **src/Program.cs**.
 
@@ -817,10 +811,10 @@ using (var scope = app.Services.CreateScope())
 
 ### Step 2: Configure Agent with ClaimsPlugin
 
-??? note "What this code does"
-    **Agent Instructions**: Updates the agent's system prompt to include **ClaimsPlugin** tools (tells AI when to use them)
-    **Plugin Creation**: Instantiates **ClaimsPlugin** with required dependencies (context, knowledge base service, configuration)
-    **Tool Registration**: Registers **SearchClaims** and **GetClaimDetails** as callable tools for the AI agent
+> [!Note] **What this code does**
+**Agent Instructions**: Updates the agent's system prompt to include **ClaimsPlugin** tools (tells AI when to use them)
+**Plugin Creation**: Instantiates **ClaimsPlugin** with required dependencies (context, knowledge base service, configuration)
+**Tool Registration**: Registers **SearchClaims** and **GetClaimDetails** as callable tools for the AI agent
 
 1️⃣ Open **src/Agent/ZavaInsuranceAgent.cs**.
 
@@ -891,10 +885,8 @@ Now that we've added claims search capabilities, let's update the welcome messag
                                 "Ready to help with your claims investigation. What would you like to start with?";
 ```
 
-??? note "Progressive feature updates"
-    Each lab progressively enhances the welcome message to reflect new capabilities. This ensures users always see an accurate description of what the agent can do at each stage of development.
-
-<cc-end-step lab="baf2" exercise="4" step="3" />
+> [!Note] **Progressive feature updates**
+Each lab progressively enhances the welcome message to reflect new capabilities. This ensures users always see an accurate description of what the agent can do at each stage of development.
 
 ## Exercise 5: Test the Document Search
 
@@ -920,8 +912,8 @@ Now let's test the new claims search capabilities!
 ✅ Knowledge Base initialized successfully
 ```
 
-!!! note "About Policies"
-    You may see additional output related to policies if your KnowledgeBaseService includes policy functionality from the complete implementation. This is expected - we'll use policies in a future lab. For now, focus on the claims functionality.
+> [!Note] **About Policies**
+You may see additional output related to policies if your KnowledgeBaseService includes policy functionality from the complete implementation. This is expected - we'll use policies in a future lab. For now, focus on the claims functionality.
 
 4️⃣ A browser window will open with Microsoft 365 Copilot. Your agent should already be installed from the previous lab.
 
@@ -937,7 +929,6 @@ Now let's test the new claims search capabilities!
 1️⃣ In Microsoft 365 Copilot, try a more specific search: **"Find claims in the South region"**
 
 2️⃣ Try: **"Show me auto claims with medium severity"**
-
 
 ### Step 3: Test Claim Details
 
