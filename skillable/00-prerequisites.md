@@ -33,7 +33,7 @@ Use them every time you are prompted to sign in to Azure or to Microsoft Foundry
 
 For this lab path, you'll need a Microsoft Foundry project with a deployed language model.
 
-1️⃣ Navigate to [Microsoft Foundry](https://ai.azure.com){target=_blank} and sign in with your Azure account.
+1️⃣ Navigate to <[Microsoft Foundry](https://ai.azure.com) and sign in with your Azure account.
 2️⃣ Select **+ Create new**, then **Microsoft Foundry resource** and then **Next**.
 
 3️⃣ Leave the project name as recommended and select **Create**. This will scaffold a new project for you in Microsoft Foundry, it usually takes 3-5 minutes. Choose **East US** region as it supports all the models you'll need throughout the labs.
