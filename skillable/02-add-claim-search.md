@@ -42,18 +42,18 @@ If you haven't created an Azure AI Search service yet (from Lab BAF0), create on
 
 Your project includes sample claims data that will be automatically indexed.
 
-1️⃣ In VS Code, navigate to `infra/data/sample-data/claims.json`.
+1️⃣ In VS Code, navigate to **infra/data/sample-data/claims.json**.
 
 2️⃣ Notice the structure - each claim has:
 
-- `claimNumber`: Unique identifier (e.g., "CLM-2025-001001")
-- `policyholderName`: Customer name
-- `claimType`: Auto, Homeowners, or Commercial
-- `status`: Open, In Progress, Approved, Closed
-- `severity`: Low, Medium, High, Critical
-- `estimatedCost`: Claim amount
-- `fraudRiskScore`: Risk indicator (0-100)
-- `region`: Northeast, South, Midwest, West
+- **claimNumber**: Unique identifier (e.g., "CLM-2025-001001")
+- **policyholderName**: Customer name
+- **claimType**: Auto, Homeowners, or Commercial
+- **status**: Open, In Progress, Approved, Closed
+- **severity**: Low, Medium, High, Critical
+- **estimatedCost**: Claim amount
+- **fraudRiskScore**: Risk indicator (0-100)
+- **region**: Northeast, South, Midwest, West
 
 3️⃣ This data will be indexed into Azure AI Search when you run the agent.
 
@@ -61,7 +61,7 @@ Your project includes sample claims data that will be automatically indexed.
 
 Now let's add your Azure AI Search credentials to the project.
 
-1️⃣ Open `env/.env.local` in VS Code.
+1️⃣ Open **env/.env.local** in VS Code.
 
 2️⃣ Find the Azure AI Search section and update:
 
@@ -77,12 +77,12 @@ AZURE_AI_SEARCH_API_KEY=your-primary-admin-key
 
 ## Exercise 2: Create the KnowledgeBaseService
 
-The `KnowledgeBaseService` handles all interactions with Azure AI Search, including creating indexes, knowledge sources, knowledge bases, indexing data, and performing AI-powered retrieval.
+The **KnowledgeBaseService** handles all interactions with Azure AI Search, including creating indexes, knowledge sources, knowledge bases, indexing data, and performing AI-powered retrieval.
 
 ### Step 1: Create Complete KnowledgeBaseService
 
 ??? note "What this code does"
-    The `KnowledgeBaseService` is the core service for Azure AI Search integration:
+    The **KnowledgeBaseService** is the core service for Azure AI Search integration:
     
     - **Constructor**: Initializes connections to Azure AI Search and Azure OpenAI using configuration
     - **EnsureClaimsIndexAsync**: Creates the search index with semantic and vector search (required by Knowledge Base API)
@@ -93,9 +93,9 @@ The `KnowledgeBaseService` handles all interactions with Azure AI Search, includ
     
     This service provides complete Azure AI Search functionality with agentic retrieval capabilities.
 
-1️⃣ In VS Code, create a new folder `src/Services`.
+1️⃣ In VS Code, create a new folder **src/Services**.
 
-2️⃣ Create a new file `src/Services/KnowledgeBaseService.cs` and add the complete implementation:
+2️⃣ Create a new file **src/Services/KnowledgeBaseService.cs** and add the complete implementation:
 
 ```csharp
 using Azure;
@@ -574,20 +574,20 @@ public class KnowledgeBaseService
 
 ## Exercise 3: Create the ClaimsPlugin
 
-Now let's create the ClaimsPlugin that uses the KnowledgeBaseService to provide claim search capabilities to your agent.
+Now let's create the ClaimsPlugin that uses the **KnowledgeBaseService** to provide claim search capabilities to your agent.
 
 ### Step 1: Create Complete ClaimsPlugin
 
 ??? note "What this code does"
-    The `ClaimsPlugin` provides claim search capabilities to your agent:
+    The **ClaimsPlugin** provides claim search capabilities to your agent:
     
     **SearchClaims**: Searches for claims by region, type, severity, or status - builds natural language query and uses agentic retrieval with structured output instructions
     **GetClaimDetails**: Retrieves comprehensive information for a specific claim ID with detailed formatting instructions for the LLM
     **NotifyUserAsync**: Helper method to send real-time status updates to users ("Searching...", "Retrieved data...") using StreamingResponse
     
-    Each method has a `[Description]` attribute that tells the AI agent when and how to use the tool. The AI automatically decides which tool to call based on user intent.
+    Each method has a **[Description]** attribute that tells the AI agent when and how to use the tool. The AI automatically decides which tool to call based on user intent.
 
-1️⃣ Create a new file `src/Plugins/ClaimsPlugin.cs` and add the complete implementation:
+1️⃣ Create a new file **src/Plugins/ClaimsPlugin.cs** and add the complete implementation:
 
 ```csharp
 using Microsoft.Agents.Builder;
@@ -764,16 +764,16 @@ namespace ZavaInsurance.Plugins
 
 ## Exercise 4: Register Services and Configure Agent
 
-Now let's wire everything together by registering services in Program.cs and adding the ClaimsPlugin to your agent.
+Now let's wire everything together by registering services in Program.cs and adding the **ClaimsPlugin** to your agent.
 
 ### Step 1: Register KnowledgeBaseService and Initialize Data
 
 ??? note "What this code does"
-    **Service Registration**: Registers KnowledgeBaseService as a singleton so it's available throughout the app
+    **Service Registration**: Registers **KnowledgeBaseService** as a singleton so it's available throughout the app
     **Initialization**: Creates index → knowledge source → knowledge base → indexes sample data (must be done in this order)
     **Error Handling**: Catches initialization errors without stopping the app (useful for development)
 
-1️⃣ Open `src/Program.cs`.
+1️⃣ Open **src/Program.cs**.
 
 2️⃣ At the top with other using statements, add:
 
@@ -781,14 +781,14 @@ Now let's wire everything together by registering services in Program.cs and add
 using InsuranceAgent.Services;
 ```
 
-3️⃣ Find `builder.Services.AddSingleton<IStorage, MemoryStorage>();` and add right after:
+3️⃣ Find **builder.Services.AddSingleton<IStorage, MemoryStorage>();** and add right after:
 
 ```csharp
 // Register Knowledge Base Service for Azure AI Search
 builder.Services.AddSingleton<KnowledgeBaseService>();
 ```
 
-4️⃣ Find the line `var app = builder.Build();` and add this initialization code right after:
+4️⃣ Find the line **var app = builder.Build();** and add this initialization code right after:
 
 ```csharp
 // Initialize Azure AI Search Knowledge Base
@@ -818,11 +818,11 @@ using (var scope = app.Services.CreateScope())
 ### Step 2: Configure Agent with ClaimsPlugin
 
 ??? note "What this code does"
-    **Agent Instructions**: Updates the agent's system prompt to include ClaimsPlugin tools (tells AI when to use them)
-    **Plugin Creation**: Instantiates ClaimsPlugin with required dependencies (context, knowledge base service, configuration)
-    **Tool Registration**: Registers SearchClaims and GetClaimDetails as callable tools for the AI agent
+    **Agent Instructions**: Updates the agent's system prompt to include **ClaimsPlugin** tools (tells AI when to use them)
+    **Plugin Creation**: Instantiates **ClaimsPlugin** with required dependencies (context, knowledge base service, configuration)
+    **Tool Registration**: Registers **SearchClaims** and **GetClaimDetails** as callable tools for the AI agent
 
-1️⃣ Open `src/Agent/ZavaInsuranceAgent.cs`.
+1️⃣ Open **src/Agent/ZavaInsuranceAgent.cs**.
 
 2️⃣ Add the following using statements at the top:
 
@@ -830,7 +830,7 @@ using (var scope = app.Services.CreateScope())
 using InsuranceAgent.Services;
 ```
 
-3️⃣ Find the `AgentInstructions` property and replace it with the following snippet:
+3️⃣ Find the **AgentInstructions** property and replace it with the following snippet:
 
 ```csharp
 private readonly string AgentInstructions = """
@@ -848,7 +848,7 @@ Be concise and professional in your responses.
 """;
 ```
 
-4️⃣ Find the `GetClientAgent` method in `src/Agent/ZavaInsuranceAgent.cs`, locate where `StartConversationPlugin` is created and add the following snippet right after:
+4️⃣ Find the **GetClientAgent** method in **src/Agent/ZavaInsuranceAgent.cs**, locate where **StartConversationPlugin** is created and add the following snippet right after:
 
 ```csharp
 var scope = _serviceProvider.CreateScope();
@@ -861,7 +861,7 @@ var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 ClaimsPlugin claimsPlugin = new(context, knowledgeBaseService, configuration);
 ```
 
-5️⃣ Find where tools are added (after `toolOptions.Tools.Add(AIFunctionFactory.Create(startConversationPlugin.StartConversation))`) and add:
+5️⃣ Find where tools are added (after **toolOptions.Tools.Add(AIFunctionFactory.Create(startConversationPlugin.StartConversation))**) and add:
 
 ```csharp
 // Register ClaimsPlugin tools
@@ -873,9 +873,9 @@ toolOptions.Tools.Add(AIFunctionFactory.Create(claimsPlugin.GetClaimDetails));
 
 Now that we've added claims search capabilities, let's update the welcome message to reflect the new features.
 
-1️⃣ Open `src/Plugins/StartConversationPlugin.cs`.
+1️⃣ Open **src/Plugins/StartConversationPlugin.cs**.
 
-2️⃣ Find the `welcomeMessage` variable in the `StartConversation` method and replace it with:
+2️⃣ Find the **welcomeMessage** variable in the **StartConversation** method and replace it with:
 
 ```csharp
             var welcomeMessage = "👋 Welcome to Zava Insurance Claims Assistant!\n\n" +
@@ -928,8 +928,8 @@ Now let's test the new claims search capabilities!
 5️⃣ **Verify in Azure Portal** (optional but recommended):
 
 - Go to [Azure Portal](https://portal.azure.com){target=_blank} and search the name of your Azure AI Search service
-- Click **Indexes** in the left menu and you should see `claims-index` listed. Click on the index name and select **Search** to view details and see the 35 indexed documents
-- Go back to your search service and click **Agentic retrieval** > **Knowledge Bases** to see `zava-insurance-kb` listed
+- Click **Indexes** in the left menu and you should see **claims-index** listed. Click on the index name and select **Search** to view details and see the 35 indexed documents
+- Go back to your search service and click **Agentic retrieval** > **Knowledge Bases** to see **zava-insurance-kb** listed
 - You can also use the **Search Explorer** to test queries directly against your index
 
 ### Step 2: Test Claim Search
@@ -943,7 +943,7 @@ Now let's test the new claims search capabilities!
 
 1️⃣ Try: **"Get details for claim CLM-2025-001007"**
 
-The agent should use `GetClaimDetails` and return detailed information. Note that we'll continue adding more data in future labs that will enhance the responses such as showing policy or claim history in claim details.
+The agent should use **GetClaimDetails** and return detailed information. Note that we'll continue adding more data in future labs that will enhance the responses such as showing policy or claim history in claim details.
 
 2️⃣ Try another claim: **"Show me information about claim CLM-2025-001003"**
 

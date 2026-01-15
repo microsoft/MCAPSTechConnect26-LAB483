@@ -65,26 +65,26 @@ begin/
 
 Let's examine the main agent file to understand how it works.
 
-1️⃣ Open <code>src/Agent/ZavaInsuranceAgent.cs</code> in Visual Studio Code.
+1️⃣ Open **src/Agent/ZavaInsuranceAgent.cs** in Visual Studio Code.
 
-2️⃣ Find the <code>AgentInstructions</code> property near the top of the class. Notice how these instructions act as the **system prompt** for the AI model:
+2️⃣ Find the **AgentInstructions** property near the top of the class. Notice how these instructions act as the **system prompt** for the AI model:
 
 - It defines the agent's role: "You are a professional insurance claims assistant for Zava Insurance..."
-- It lists available tools using the <code>{{PluginName.FunctionName}}</code> syntax
-- It includes <code>{{StartConversationPlugin.StartConversation}}</code> and <code>{{DateTimeFunctionTool.getDate}}</code>
+- It lists available tools using the **{{PluginName.FunctionName}}** syntax
+- It includes **{{StartConversationPlugin.StartConversation}}** and **{{DateTimeFunctionTool.getDate}}**
 
 These instructions tell the AI how to behave and what tools it can use.
 
-3️⃣ Scroll down and find the **constructor** method <code>ZavaInsuranceAgent(...)</code>. Notice it sets up event handlers:
+3️⃣ Scroll down and find the **constructor** method **ZavaInsuranceAgent(...)**. Notice it sets up event handlers:
 
-- <code>OnConversationUpdate(ConversationUpdateEvents.MembersAdded, WelcomeMessageAsync)</code> - sends a welcome message when a user joins
-- <code>OnActivity(ActivityTypes.Message, OnMessageAsync)</code> - handles incoming messages
+- **OnConversationUpdate(ConversationUpdateEvents.MembersAdded, WelcomeMessageAsync)** - sends a welcome message when a user joins
+- **OnActivity(ActivityTypes.Message, OnMessageAsync)** - handles incoming messages
 
-4️⃣ Find the <code>GetClientAgent</code> method. Look for where it creates <code>toolOptions</code> and registers plugins:
+4️⃣ Find the **GetClientAgent** method. Look for where it creates **toolOptions** and registers plugins:
 
-- It creates a <code>ChatOptions</code> object with a <code>Tools</code> list
-- It adds <code>startConversationPlugin.StartConversation</code> using <code>AIFunctionFactory.Create</code>
-- It adds <code>DateTimeFunctionTool.getDate</code> the same way
+- It creates a **ChatOptions** object with a **Tools** list
+- It adds **startConversationPlugin.StartConversation** using **AIFunctionFactory.Create**
+- It adds **DateTimeFunctionTool.getDate** the same way
 
 This is where we register **plugins** (tools) that the AI can call during conversations.
 
@@ -92,7 +92,7 @@ This is where we register **plugins** (tools) that the AI can call during conver
 
 Now let's look at how plugins work.
 
-1️⃣ Open <code>src/Plugins/StartConversationPlugin.cs</code>.
+1️⃣ Open **src/Plugins/StartConversationPlugin.cs**.
 
 2️⃣ Notice the plugin structure:
 
@@ -110,16 +110,16 @@ public class StartConversationPlugin
 
 Key points:
 
-- The <code>[Description]</code> attribute tells the AI **when to use this tool**
+- The **[Description]** attribute tells the AI **when to use this tool**
 - The method returns a formatted welcome message
 - It's a simple plugin with no parameters
 
-3️⃣ Open <code>src/Plugins/DateTimeFunctionTool.cs</code>.
+3️⃣ Open **src/Plugins/DateTimeFunctionTool.cs**.
 
 4️⃣ Notice how it provides current date/time:
 
-- It has a <code>[Description]</code> that says "Gets the current date and time"
-- The <code>getDate()</code> method is static and returns <code>DateTime.Now</code> as a formatted string
+- It has a **[Description]** that says "Gets the current date and time"
+- The **getDate()** method is static and returns **DateTime.Now** as a formatted string
 
 This plugin demonstrates how the agent can access system information to answer user queries.
 
@@ -127,9 +127,9 @@ This plugin demonstrates how the agent can access system information to answer u
 
 Let's check the app manifest to see how your agent appears in Microsoft 365 Copilot.
 
-1️⃣ Open <code>appPackage/manifest.json</code>.
+1️⃣ Open **appPackage/manifest.json**.
 
-2️⃣ Find the <code>name</code> section to see your agent's display name:
+2️⃣ Find the **name** section to see your agent's display name:
 
 ```json
 "name": {
@@ -138,7 +138,7 @@ Let's check the app manifest to see how your agent appears in Microsoft 365 Copi
 }
 ```
 
-3️⃣ Scroll down to the <code>conversationStarters</code> array. These are the suggested prompts users see when they first interact with your agent:
+3️⃣ Scroll down to the **conversationStarters** array. These are the suggested prompts users see when they first interact with your agent:
 
 ```json
 "conversationStarters": [
@@ -163,32 +163,32 @@ Let's check the app manifest to see how your agent appears in Microsoft 365 Copi
 
 These conversation starters help guide users on how to interact with your agent. You can customize these to match your agent's capabilities.
 
-4️⃣ Notice the <code>copilotAgents.declarativeAgent</code> section that defines your agent as a custom engine agent with specific capabilities.
+4️⃣ Notice the **copilotAgents.declarativeAgent** section that defines your agent as a custom engine agent with specific capabilities.
 
 ### Step 6: Review the Application Entry Point
 
 Let's see how everything comes together in Program.cs.
 
-1️⃣ Open <code>Program.cs</code>.
+1️⃣ Open **Program.cs**.
 
 2️⃣ Key sections to understand:
 
-**Configuration Loading**: Find the section where <code>builder.Configuration</code> loads settings. Notice it loads from multiple sources:
+**Configuration Loading**: Find the section where **builder.Configuration** loads settings. Notice it loads from multiple sources:
 
-- <code>.env</code> files for environment-specific settings using <code>AddEnvFile</code>
-- User secrets for sensitive data (API keys) using <code>AddUserSecrets</code>
-- Environment variables using <code>AddEnvironmentVariables</code>
+- **.env** files for environment-specific settings using **AddEnvFile**
+- User secrets for sensitive data (API keys) using **AddUserSecrets**
+- Environment variables using **AddEnvironmentVariables**
 
-**Service Registration**: Find where services are registered with <code>builder.Services</code>. Notice:
+**Service Registration**: Find where services are registered with **builder.Services**. Notice:
 
-- <code>AddSingleton<IStorage, MemoryStorage>()</code> - registers memory storage for conversation state
-- <code>AddAgentApplicationOptions()</code> - registers agent configuration
-- <code>AddAgent<ZavaInsuranceAgent>()</code> - registers the agent itself as a service
+- **AddSingleton<IStorage, MemoryStorage>()** - registers memory storage for conversation state
+- **AddAgentApplicationOptions()** - registers agent configuration
+- **AddAgent<ZavaInsuranceAgent>()** - registers the agent itself as a service
 
-**Chat Client Configuration**: Find where <code>IChatClient</code> is registered as a singleton. Observe how it:
+**Chat Client Configuration**: Find where **IChatClient** is registered as a singleton. Observe how it:
 
 - Retrieves the endpoint, API key, and deployment name from configuration
-- Creates an <code>AzureOpenAIClient</code> with the endpoint and credentials
+- Creates an **AzureOpenAIClient** with the endpoint and credentials
 - Returns a chat client for the specified deployment (gpt-4.1)
 
 This creates the connection to Azure OpenAI, which powers the agent's AI capabilities.
@@ -201,20 +201,20 @@ Before running the agent, you need to configure it with your Azure AI credential
 
 The agent uses environment files to store configuration. Let's set them up.
 
-1️⃣ In Visual Studio Code, navigate to the <code>env/</code> folder.
+1️⃣ In Visual Studio Code, navigate to the **env/** folder.
 
 2️⃣ You should see two sample files:
 
-- <code>.env.local.sample</code>
-- <code>.env.local.user.sample</code>
+- **.env.local.sample**
+- **.env.local.user.sample**
 
-3️⃣ Copy <code>.env.local.sample</code> to <code>.env.local</code>:
+3️⃣ Copy **.env.local.sample** to **.env.local**:
 
 ```powershell
 Copy-Item env/.env.local.sample env/.env.local
 ```
 
-4️⃣ Copy <code>.env.local.user.sample</code> to <code>.env.local.user</code>:
+4️⃣ Copy **.env.local.user.sample** to **.env.local.user**:
 
 ```powershell
 Copy-Item env/.env.local.user.sample env/.env.local.user
@@ -224,9 +224,9 @@ Copy-Item env/.env.local.user.sample env/.env.local.user
 
 Now let's configure the agent to use your Azure AI Foundry deployment.
 
-1️⃣ Open <code>env/.env.local</code> in Visual Studio Code.
+1️⃣ Open **env/.env.local** in Visual Studio Code.
 
-2️⃣ Find the <code>MODELS_ENDPOINT</code> variable and update it with your Azure AI endpoint from the prerequisites:
+2️⃣ Find the **MODELS_ENDPOINT** variable and update it with your Azure AI endpoint from the prerequisites:
 
 ```bash
 MODELS_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
@@ -240,16 +240,16 @@ If you don't remember your endpoint:
 3. Go to **Settings** → **Properties**
 4. Copy the **Endpoint** URL
 
-3️⃣ Open <code>env/.env.local.user</code> in Visual Studio Code.
+3️⃣ Open **env/.env.local.user** in Visual Studio Code.
 
-4️⃣ Find the <code>SECRET_MODELS_API_KEY</code> variable and update it with your API key:
+4️⃣ Find the **SECRET_MODELS_API_KEY** variable and update it with your API key:
 
 ```bash
 SECRET_MODELS_API_KEY=your-api-key-here
 ```
 
 > [!Alert] **Keep Your API Key Secret**
-The <code>.env.local.user</code> file contains sensitive information and is already included in <code>.gitignore</code>. Never commit this file to source control!
+The **.env.local.user** file contains sensitive information and is already included in **.gitignore**. Never commit this file to source control!
 
 ### Step 3: Sign in to Microsoft 365 and Azure
 
@@ -331,11 +331,11 @@ Now let's interact with your agent!
 
 3️⃣ Try asking: **"What's today's date?"**
 
-The agent should call the <code>DateTimeFunctionTool</code> and return the current date and time.
+The agent should call the **DateTimeFunctionTool** and return the current date and time.
 
 4️⃣ Try asking: **"What can you do?"** or **"Start over"**
 
-The agent should call the <code>StartConversationPlugin</code> and show the welcome message again.
+The agent should call the **StartConversationPlugin** and show the welcome message again.
 
 5️⃣ Try a general question: **"Tell me about insurance claims"**
 
@@ -359,9 +359,9 @@ Let's make a simple modification to personalize the agent.
 
 1️⃣ Stop the debugger (press Shift+F5).
 
-2️⃣ Open <code>src/Plugins/StartConversationPlugin.cs</code> and find the <code>welcomeMessage</code> variable.
+2️⃣ Open **src/Plugins/StartConversationPlugin.cs** and find the **welcomeMessage** variable.
 
-3️⃣ Add your name to the first line: <code>"👋 Welcome! I'm [Your Name]'s Agent!\n\n"</code>
+3️⃣ Add your name to the first line: **"👋 Welcome! I'm [Your Name]'s Agent!\n\n"**
 
 4️⃣ Save, press **F5** to restart, and type **"start over"** in Copilot to see your change.
 
