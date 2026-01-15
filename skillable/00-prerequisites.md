@@ -44,10 +44,10 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
 6️⃣ Search for **gpt-4.1** and select the **gpt-4.1** model, then select **Confirm** and **Deploy**.
 
-!!! important "Model Selection"
-    Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
+> [!Alert] "Model Selection"
+Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
 
-!!! tip "Save Your Credentials"
+> [!Hint]  "Save Your Credentials"
     You'll need the following information from your Microsoft Foundry project:
 
     - **Endpoint URL**: Found in project settings → Properties (e.g., `https://your-resource.cognitiveservices.azure.com/`)
@@ -56,7 +56,7 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
     
     Save these values in a secure location - you'll need them in the next lab!
 
-!!! note "Additional services"
+> [!Hint] "Additional services"
     You'll create other Azure services (like Azure AI Search) in later labs when you need them.
 
 ### Step 3: Configure Content Safety Filter
