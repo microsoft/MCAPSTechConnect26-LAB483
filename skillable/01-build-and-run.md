@@ -316,6 +316,9 @@ The toolkit will create a service principal to manage authentication with the Az
 - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
 - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
 
+> [!Hint]
+> If, after choosing **Work or school account**, you don't see a login prompt, try minimizing Visual Studio Code. The login pop-up often gets opened behind it.
+
 The script will ask you also to select an Azure subscription in the terminal. 
 Type +++1+++ to select the only subscription available in the lab environment and press **Enter**.
 

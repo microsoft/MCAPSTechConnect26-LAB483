@@ -23,6 +23,9 @@ Let's create the Azure AI Search service first.
 
 2️⃣ Click **+ Create a resource** → Search for **Azure AI Search** → Click **Create**.
 
+> [!Hint]
+> If you can't find it, click on the checkbox **Azure services only**. It should be the first result.
+
 3️⃣ Configure:
 
 - **Resource Group**: Use the same as your Azure AI Foundry project
@@ -53,7 +56,7 @@ Azure AI Search uses a technology called vector search to enable semantic search
 This time, you won't have to note down the endpoint and the API Key, since they will be the same we're using to connect our agent to gpt-4.1.
 
 
-### Step 2: Add Sample Claims Data
+### Step 3: Add Sample Claims Data
 
 Your project includes sample claims data that will be automatically indexed.
 
@@ -72,7 +75,7 @@ Your project includes sample claims data that will be automatically indexed.
 
 3️⃣ This data will be indexed into Azure AI Search when you run the agent.
 
-### Step 3: Configure Azure AI Search Credentials
+### Step 4: Configure Azure AI Search Credentials
 
 Now let's add your Azure AI Search credentials to the project.
 
@@ -83,8 +86,14 @@ Now let's add your Azure AI Search credentials to the project.
 ```bash
 # Azure AI Search
 AZURE_AI_SEARCH_ENDPOINT=https://your-search.search.windows.net
-AZURE_AI_SEARCH_API_KEY=your-primary-admin-key
 ```
+3️⃣ Open **env/.env.local.users** in VS Code.
+
+4️⃣ Find the following entry and update it with the API Key you copied earlier:
+
+```bash
+SECRET_AZURE_AI_SEARCH_API_KEY=your-search-api-key
+``` 
 
 > [!Hint] **Finding Your Credentials**
 > - **Endpoint**: Azure Portal → Your Search Service → Overview → URL
@@ -942,18 +951,17 @@ You may see additional output related to policies if your KnowledgeBaseService i
 
 ### Step 2: Test Claim Search
 
-1️⃣ In Microsoft 365 Copilot, try a more specific search: **"Find claims in the South region"**
+1️⃣ In Microsoft 365 Copilot, try a more specific search: ++Find claims in the South region++
 
-2️⃣ Try: **"Show me auto claims with medium severity"**
+2️⃣ Try: ++Show me auto claims with medium severity++
 
 ### Step 3: Test Claim Details
 
-1️⃣ Try: **"Get details for claim CLM-2025-001007"**
+1️⃣ Try: ++Get details for claim CLM-2025-001007++
 
 The agent should use **GetClaimDetails** and return detailed information. Note that we'll continue adding more data in future labs that will enhance the responses such as showing policy or claim history in claim details.
 
-2️⃣ Try another claim: **"Show me information about claim CLM-2025-001003"**
-
+2️⃣ Try another claim: ++Show me information about claim CLM-2025-001003++
 You have completed Exercise 2 - Add Document Search with Azure AI Search!
 
 You've learned how to:
