@@ -29,7 +29,7 @@ cd C:\
 
 ```bash
 git clone https://github.com/microsoft/MCAPSTechConnect26-LAB483.git
--LAB483/src/agent-framework/begin
+cd MCAPSTechConnect26-LAB483/src/agent-framework/begin
 ```
 
 4️⃣ Open the project in Visual Studio Code:

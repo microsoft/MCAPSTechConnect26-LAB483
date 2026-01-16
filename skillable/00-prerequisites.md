@@ -79,7 +79,7 @@ The insurance domain uses terms like "injury", "collision", "damage" that may tr
 
 3️⃣ Click **+ Create content filter**.
 
-4️⃣ Name your filter **InsuranceLowFilter**.
+4️⃣ Name your filter +++InsuranceLowFilter+++.
 
 5️⃣ Configure the following settings for **Input filters** (what users send):
 
