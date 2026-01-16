@@ -11,7 +11,7 @@ By default, end users can't upload applications directly; instead a Teams admini
 
 ## Exercise 2: Setup Development Environment
 
-You can complete these labs on a Windows, macOS, or Linux machine. Below you can find the list of the required tools, which have already been installed in hte lab environment for you:
+You can complete these labs on a Windows, macOS, or Linux machine. Below you can find the list of the required tools, which have already been installed in the lab environment for you:
 
 - Visual Studio Code
 - .NET 9 SDK
@@ -33,25 +33,28 @@ Use them every time you are prompted to sign in to Azure or to Microsoft Foundry
 
 For this lab path, you'll need a Microsoft Foundry project with a deployed language model.
 
-1️⃣ Navigate to <[Microsoft Foundry](https://ai.azure.com) and sign in with your Azure account.
-2️⃣ Select **+ Create new**, then **Microsoft Foundry resource** and then **Next**.
-
-3️⃣ Leave the project name as recommended and select **Create**. This will scaffold a new project for you in Microsoft Foundry, it usually takes 3-5 minutes. Choose **East US** region as it supports all the models you'll need throughout the labs.
-
-4️⃣ Once your project is created, navigate to **Deployments** in the left sidebar.
-
-5️⃣ Click **+ Deploy model** and select **Deploy base model**.
-
-6️⃣ Search for **gpt-4.1** and select the **gpt-4.1** model, then select **Confirm** and **Deploy**.
+1️⃣ Open Edge in the lab environment and navigate to the Microsoft Foundry portal by typing the following URL in the address bar: +++https://ai.azure.com+++, then sign in with your Azure account.
+2️⃣ In the middle of the page you'll find a section called **Models and experiences**. Inside it, click on the **View full model catalog** link.
+3️⃣ Using the integrated search bar, look for the **gpt-4.1** model and click on it.
+    ![The Microsoft Foundry model catalog](images/00-prerequisites/model-catalog.png)
+4️⃣ From the top bar, choose **Use this model**.
+    ![The option to select to deploy the model](images/00-prerequisites/use-this-model.png)
+5️⃣ You will be asked to choose a project. Click on the dropdown and pick **Create a new project**.
+6️⃣Leave the project name as recommended and select **Create and continue**. This will scaffold a new project for you in Microsoft Foundry, it usually takes 3-5 minutes. 
+7️⃣ Once your project is created, you will be asked to specify a deployment name and type. Leave the default settings and click **Deploy**.
+    ![Click on Deploy to deploy the model](images/00-prerequisites/deploy-model.png)
 
 > [!Alert] **Model Selection**
 > Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
 
-> [!Hint]  **Save Your Credentials**
-> You'll need the following information from your Microsoft Foundry project:
-> - **Endpoint URL**: Found in project settings → Properties (e.g., `https://your-resource.cognitiveservices.azure.com/`)
-> - **API Key**: Found under "Keys and Endpoint" section
-> - **Model Deployment Name**: The name you gave to your gpt-4.1 deployment
+**Save Your Credentials**
+In order to get the information you need to connect your agent to the model, click on **Overview** in the left sidebar and focus on the section called **Endpoints and keys**.
+
+1. To get the **Endpoint URL** you will need in the project, click on **Azure OpenAI** under **Libraries** and note down the **AzureOpenAI endpoint**. It will look something like **https://user1-58318955-3884-resource.openai.azure.com/**.
+2. The **API Key** is listed in section, at the top.
+3. The **Model Deployment Name** is the name you gave to your gpt-4.1 deployment, which by default is **gpt-4.1**.
+
+![The endpoints and keys in the Microsoft Foundry portal](images/00-prerequisites/endpoints.png)
 
 Save these values in a secure location - you'll need them in the next lab!
 

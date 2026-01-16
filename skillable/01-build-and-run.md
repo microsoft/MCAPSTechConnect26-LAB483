@@ -288,10 +288,28 @@ Let's run the agent using the F5 debug experience.
 
 3️⃣ The first time you run the agent, the Microsoft 365 Agents Toolkit will:
 
+#### Create a Dev Tunnel
+
+Creating a Dev Tunnel requires you to sign in with a Microsoft or work account. When prompted, choose **Work or School account** and login with the lab credentials:
+
+- **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+- **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
+
+#### Provision Azure Resources
+
+In order to provision the resources, Visual Studio Code will:
+
 - Prompt you to select an **Azure subscription**
-- Ask you to create a new **resource group** or select existing one
-- Select a **region** for your resources (choose **East US**, same as your Microsoft Foundry project)
-- Provision Azure resources (Azure Bot Service, App Registration)
+- Ask you to create a new **resource group** or select existing one. Choose **+New resource group**. Call it **rg-ZavaInsuranceAgent** and pick **East US** as the **region** for your resource group.
+- Provision the Azure resources (Azure Bot Service, App Registration). Click on **Provision** to confirm when asked.
+
+#### Create a service principal
+
+The toolkit will create a service principal to manage authentication with the Azure resources. The script that takes care of this step will prompt you to authenticate once more with your Azure account, use the same lab credentials as before:
+
+- **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+- **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
+
 
 This provisioning process usually takes 2-3 minutes.
 
