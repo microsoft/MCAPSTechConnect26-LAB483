@@ -36,6 +36,23 @@ Let's create the Azure AI Search service first.
 
 6️⃣ Then, go to **Settings** > **Keys** and copy **Primary Admin Key**
 
+### Step 2: Deploy an embedding model
+
+Azure AI Search uses a technology called vector search to enable semantic search capabilities. To use vector search, you need to deploy an embedding model in your Azure OpenAI resource, which generates vector representations of your text data.
+
+1️⃣ Go back to the Microsoft Foundry portal (+++https://ai.azure.com)+++.
+
+2️⃣ Click on **Model catalog** in the left sidebar.
+
+3️⃣ Use the search bar to find the **text-embedding-ada-002** model.
+
+4️⃣ Click on the model and then click **Use this model**.
+
+5️⃣ Leave the default settings and click on **Deploy**.
+
+This time, you won't have to note down the endpoint and the API Key, since they will be the same we're using to connect our agent to gpt-4.1.
+
+
 ### Step 2: Add Sample Claims Data
 
 Your project includes sample claims data that will be automatically indexed.
