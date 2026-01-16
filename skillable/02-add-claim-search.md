@@ -951,17 +951,17 @@ You may see additional output related to policies if your KnowledgeBaseService i
 
 ### Step 2: Test Claim Search
 
-1️⃣ In Microsoft 365 Copilot, try a more specific search: ++Find claims in the South region++
+1️⃣ In Microsoft 365 Copilot, try a more specific search: +++Find claims in the South region+++
 
-2️⃣ Try: ++Show me auto claims with medium severity++
+2️⃣ Try: +++Show me auto claims with medium severity+++
 
 ### Step 3: Test Claim Details
 
-1️⃣ Try: ++Get details for claim CLM-2025-001007++
+1️⃣ Try: +++Get details for claim CLM-2025-001007+++
 
 The agent should use **GetClaimDetails** and return detailed information. Note that we'll continue adding more data in future labs that will enhance the responses such as showing policy or claim history in claim details.
 
-2️⃣ Try another claim: ++Show me information about claim CLM-2025-001003++
+2️⃣ Try another claim: +++Show me information about claim CLM-2025-001003+++
 You have completed Exercise 2 - Add Document Search with Azure AI Search!
 
 You've learned how to:
