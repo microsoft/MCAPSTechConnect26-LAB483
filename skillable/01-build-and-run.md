@@ -29,7 +29,7 @@ cd C:\
 
 ```bash
 git clone https://github.com/microsoft/MCAPSTechConnect26-LAB483.git
-cd copilot-camp/src/agent-framework/begin
+-LAB483/src/agent-framework/begin
 ```
 
 4️⃣ Open the project in Visual Studio Code:
@@ -37,6 +37,8 @@ cd copilot-camp/src/agent-framework/begin
 ```bash
 code .
 ```
+
+If you get a security pop-up, click on **Yes, I trust the authors** to continue.
 
 ### Step 2: Explore the Project Structure
 
@@ -267,6 +269,9 @@ For both sign-ins, use the following credentials:
 
  - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
  - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
+
+> [!Note] **Sign-in to this app only**
+> The first time you sign in, Windows might ask you if you want to store the login or if you want to sign in only in the current app. Choose **Sign-in to this app only**.
 
 > [!Note] **First Time Sign-In**
 > The first time you sign in, you may need to grant permissions to the Microsoft 365 Agents Toolkit extension.

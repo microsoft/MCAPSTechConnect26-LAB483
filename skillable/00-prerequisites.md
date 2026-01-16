@@ -34,20 +34,28 @@ Use them every time you are prompted to sign in to Azure or to Microsoft Foundry
 For this lab path, you'll need a Microsoft Foundry project with a deployed language model.
 
 1️⃣ Open Edge in the lab environment and navigate to the Microsoft Foundry portal by typing the following URL in the address bar: +++https://ai.azure.com+++, then sign in with your Azure account.
-2️⃣ In the middle of the page you'll find a section called **Models and experiences**. Inside it, click on the **View full model catalog** link.
+
+2️⃣ In the middle of the page you'll find a section called **Models and experiences**. Inside it, click on the **Go to full model catalog** link.
+![Open the full model catalog](images/00-prerequisites/full-model-catalog.png)
+
 3️⃣ Using the integrated search bar, look for the **gpt-4.1** model and click on it.
-    ![The Microsoft Foundry model catalog](images/00-prerequisites/model-catalog.png)
+![The Microsoft Foundry model catalog](images/00-prerequisites/model-catalog.png)
+
 4️⃣ From the top bar, choose **Use this model**.
-    ![The option to select to deploy the model](images/00-prerequisites/use-this-model.png)
+![The option to select to deploy the model](images/00-prerequisites/use-this-model.png)
+
 5️⃣ You will be asked to choose a project. Click on the dropdown and pick **Create a new project**.
+
 6️⃣Leave the project name as recommended and select **Create and continue**. This will scaffold a new project for you in Microsoft Foundry, it usually takes 3-5 minutes. 
+
 7️⃣ Once your project is created, you will be asked to specify a deployment name and type. Leave the default settings and click **Deploy**.
-    ![Click on Deploy to deploy the model](images/00-prerequisites/deploy-model.png)
+![Click on Deploy to deploy the model](images/00-prerequisites/deploy-model.png)
 
 > [!Alert] **Model Selection**
 > Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
 
 **Save Your Credentials**
+
 In order to get the information you need to connect your agent to the model, click on **Overview** in the left sidebar and focus on the section called **Endpoints and keys**.
 
 1. To get the **Endpoint URL** you will need in the project, click on **Azure OpenAI** under **Libraries** and note down the **AzureOpenAI endpoint**. It will look something like **https://user1-58318955-3884-resource.openai.azure.com/**.
