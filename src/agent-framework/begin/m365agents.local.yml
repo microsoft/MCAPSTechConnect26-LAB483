@@ -60,6 +60,11 @@ provision:
               me:
                 Settings:
                   AzureBotOAuthConnectionName: "Microsoft Graph"
+                  # OBOConnectionName: "BotServiceConnection"
+                  # OBOScopes:
+                  #   - "https://graph.microsoft.com/.default"
+                  # Title: "Sign in"
+                  # Text: "Sign in to Microsoft Graph"
         TokenValidation:
           Audiences:
             ClientId: ${{BOT_ID}}
@@ -86,6 +91,15 @@ provision:
           ApiKey: ${{SECRET_MODELS_API_KEY}}
           LanguageModel:
             Name: ${{LANGUAGE_MODEL_NAME}}
+          VisionModel:
+            Name: ${{VISION_MODEL_NAME}}
+          EmbeddingModel:
+            Name: ${{EMBEDDING_MODEL_NAME}}
+        AzureStorage:
+          ConnectionString: ${{SECRET_AZURE_STORAGE_CONNECTION_STRING}}
+          StorageAccountName: ${{AZURE_STORAGE_ACCOUNT_NAME}}
+          ClaimsContainerName: claims-documents
+          StateContainerName: state
         AzureAISearch:
           Endpoint: ${{AZURE_AI_SEARCH_ENDPOINT}}
           ApiKey: ${{SECRET_AZURE_AI_SEARCH_API_KEY}}
@@ -118,8 +132,3 @@ provision:
     writeToEnvironmentFile:
       titleId: M365_TITLE_ID
       appId: M365_APP_ID
-
-deploy:
-  - uses: teamsApp/validateManifest
-    with:
-      manifestPath: ./appPackage/manifest.json

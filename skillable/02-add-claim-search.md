@@ -17,9 +17,9 @@ Before we add the plugin, let's set up Azure AI Search with sample claims data.
 
 ### Step 1: Create Azure AI Search Service
 
-If you haven't created an Azure AI Search service yet (from Lab BAF0), create one now.
+Let's create the Azure AI Search service first.
 
-1️⃣ Go to the <[Azure Portal](https://portal.azure.com)>.
+1️⃣ Go to the Azure Portal by opening the browser in the lab environment and typing the following URL in the address bar: +++https://portal.azure.com+++.
 
 2️⃣ Click **+ Create a resource** → Search for **Azure AI Search** → Click **Create**.
 
@@ -27,7 +27,7 @@ If you haven't created an Azure AI Search service yet (from Lab BAF0), create on
 
 - **Resource Group**: Use the same as your Azure AI Foundry project
 - **Service Name**: Choose a unique name (e.g., `zava-insurance-search`)
-- **Region**: It can be any supported location, pick East US to match your Foundry project
+- **Region**: It can be any supported location, pick East US 2to match your Foundry project
 - **Pricing Tier**: Basic
 
 4️⃣ Click **Review + Create** → **Create** (takes 2-3 minutes).
@@ -127,12 +127,12 @@ public class KnowledgeBaseService
     public KnowledgeBaseService(IConfiguration configuration)
     {
         _configuration = configuration;
-    {
+
         // Load Azure AI Search configuration
         _searchEndpoint = configuration["AZURE_AI_SEARCH_ENDPOINT"]
             ?? throw new InvalidOperationException("AZURE_AI_SEARCH_ENDPOINT not configured");
-        _searchApiKey = configuration["AZURE_AI_SEARCH_API_KEY"]
-            ?? throw new InvalidOperationException("AZURE_AI_SEARCH_API_KEY not configured");
+        _searchApiKey = configuration["SECRET_AZURE_AI_SEARCH_API_KEY"]
+            ?? throw new InvalidOperationException("SECRET_AZURE_AI_SEARCH_API_KEY not configured");
         
         // Load Azure OpenAI configuration for embeddings and LLM
         _aiEndpoint = configuration["MODELS_ENDPOINT"]
@@ -155,7 +155,6 @@ public class KnowledgeBaseService
             new Uri(_aiEndpoint), 
             new AzureKeyCredential(_aiApiKey)
         );
-    }
     }
 
     /// <summary>
@@ -775,7 +774,7 @@ Now let's wire everything together by registering services in Program.cs and add
 using InsuranceAgent.Services;
 ```
 
-3️⃣ Find **builder.Services.AddSingleton<IStorage, MemoryStorage>();** and add right after:
+3️⃣ Find **builder.Services.AddSingleton< IStorage, MemoryStorage >();** and add right after:
 
 ```csharp
 // Register Knowledge Base Service for Azure AI Search
@@ -919,8 +918,8 @@ You may see additional output related to policies if your KnowledgeBaseService i
 
 5️⃣ **Verify in Azure Portal** (optional but recommended):
 
-- Go to <[Azure Portal](https://portal.azure.com)> and search the name of your Azure AI Search service
-- Click **Indexes** in the left menu and you should see **claims-index** listed. Click on the index name and select **Search** to view details and see the 35 indexed documents
+- Go back to the Azure Portal and search the name of your Azure AI Search service
+- Expand the **Search management** section in the left menu and click **Indexes** and you should see **claims-index** listed. Click on the index name and select **Search** to view details and see the 35 indexed documents
 - Go back to your search service and click **Agentic retrieval** > **Knowledge Bases** to see **zava-insurance-kb** listed
 - You can also use the **Search Explorer** to test queries directly against your index
 

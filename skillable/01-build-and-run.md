@@ -231,7 +231,7 @@ Now let's configure the agent to use your Azure AI Foundry deployment.
 2️⃣ Find the **MODELS_ENDPOINT** variable and update it with your Azure AI endpoint from the prerequisites:
 
 ```bash
-MODELS_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
+MODELS_ENDPOINT=https://your-resource.openai.azure.com/
 ```
 
 > [!Hint] **Finding Your Endpoint**
@@ -271,7 +271,7 @@ For both sign-ins, use the following credentials:
  - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
 
 > [!Note] **Sign-in to this app only**
-> The first time you sign in, Windows might ask you if you want to store the login or if you want to sign in only in the current app. Choose **Sign-in to this app only**.
+> The first time you sign in, Windows might ask you if you want to sign in to all apps, websites and services on this device. Choose **No, this app only**.
 
 > [!Note] **First Time Sign-In**
 > The first time you sign in, you may need to grant permissions to the Microsoft 365 Agents Toolkit extension.
@@ -295,26 +295,29 @@ Let's run the agent using the F5 debug experience.
 
 #### Create a Dev Tunnel
 
-Creating a Dev Tunnel requires you to sign in with a Microsoft or work account. When prompted, choose **Work or School account** and login with the lab credentials:
+Creating a Dev Tunnel requires you to sign in with a Microsoft or work account. When prompted, choose **Work or school account** and login with the lab credentials:
 
 - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
 - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
 
 #### Provision Azure Resources
 
-In order to provision the resources, Visual Studio Code will:
+In order to provision the resources, Visual Studio Code will ask you to create a new **resource group** or select existing one. 
 
-- Prompt you to select an **Azure subscription**
-- Ask you to create a new **resource group** or select existing one. Choose **+New resource group**. Call it **rg-ZavaInsuranceAgent** and pick **East US** as the **region** for your resource group.
-- Provision the Azure resources (Azure Bot Service, App Registration). Click on **Provision** to confirm when asked.
+- Click on  **+New resource group**. 
+- Name it +++rg-ZavaInsuranceAgent+++.
+- Pick **East US 2** as the **region**
+- Click on **Provision** to confirm when asked.
 
 #### Create a service principal
 
-The toolkit will create a service principal to manage authentication with the Azure resources. The script that takes care of this step will prompt you to authenticate once more with your Azure account, use the same lab credentials as before:
+The toolkit will create a service principal to manage authentication with the Azure resources. The script that takes care of this step will prompt you to authenticate once more with your Azure account, make sure to choose **Work or school account** and use the same lab credentials as before:
 
 - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
 - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
 
+The script will ask you also to select an Azure subscription in the terminal. 
+Type +++1+++ to select the only subscription available in the lab environment and press **Enter**.
 
 This provisioning process usually takes 2-3 minutes.
 
@@ -334,11 +337,9 @@ This provisioning process usually takes 2-3 minutes.
 ✅ Agent initialized successfully!
 ```
 
-5️⃣ A browser window will open with Microsoft 365 Copilot.
+5️⃣ A browser window will open with Microsoft 365 Copilot. You might be asked to login with your account.
 
-6️⃣ You'll see an **install dialog** for the Zava Insurance Agent. Click **Add**.
-
-7️⃣ After installation, click **Open in Copilot** or **Chat**.
+6️⃣ You'll be redirected to Copilot Chat, with the Insurance Agent already loaded and ready to be interacted with.
 
 ### Step 2: Test Basic Conversations
 
@@ -352,19 +353,19 @@ Now let's interact with your agent!
 
 ![Conversation starters in Microsoft 365 Copilot](images/01-build-and-run//BAF1-test2.png)
 
-3️⃣ Try asking: **"What's today's date?"**
+3️⃣ Try asking: +++"What's today's date?"+++
 
 The agent should call the **DateTimeFunctionTool** and return the current date and time.
 
-4️⃣ Try asking: **"What can you do?"** or **"Start over"**
+4️⃣ Try asking: +++"What can you do?"+++ or +++"Start over"+++
 
 The agent should call the **StartConversationPlugin** and show the welcome message again.
 
-5️⃣ Try a general question: **"Tell me about insurance claims"**
+5️⃣ Try a general question: +++"Tell me about insurance claims"+++
 
 The agent should use its AI knowledge to provide a helpful explanation about insurance claims.
 
-6️⃣ Try something outside its scope: **"What's the weather today?"**
+6️⃣ Try something outside its scope: +++"What's the weather today?"+++
 
 The agent should politely indicate that this is outside its scope as an insurance assistant.
 
