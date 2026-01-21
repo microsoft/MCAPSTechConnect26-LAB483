@@ -1,4 +1,4 @@
-# Exercise 1 - Build and Run Your First Agent
+# Module 1 - Build and Run Your First Agent
 
 In this lab, you'll build and run a custom engine agent using the **Microsoft 365 Agents SDK** with the **Agents Framework**. You'll explore the starter project, understand the core components, and see your agent come to life in Microsoft 365 Copilot.
 
@@ -9,7 +9,7 @@ The Zava Insurance Agent is designed to help insurance adjusters streamline clai
 > **Agents Framework** is an open-source development kit for building AI agents with LLMs, tool calling, and multi-agent workflows. It's the successor to Semantic Kernel and AutoGen, providing the AI capabilities and agent logic.
 > Together, they allow you to build intelligent agents with the Agents Framework and deploy them to Microsoft 365 using the Agents SDK.
 
-## Exercise 1: Clone and Explore the Project
+## Exercise 4: Clone and Explore the Project
 
 In this exercise, you'll clone the Copilot Camp repository and explore the starter project structure to understand how the agent is organized.
 
@@ -140,10 +140,10 @@ Let's check the app manifest to see how your agent appears in Microsoft 365 Copi
 }
 ```
 
-3️⃣ Scroll down to the **conversationStarters** array. These are the suggested prompts users see when they first interact with your agent:
+3️⃣ Scroll down to the **commandLists** array. These are the suggested prompts users see when they first interact with your agent:
 
 ```json
-"conversationStarters": [
+"commandLists": [
     {
         "title": "Instructions",
         "description": "What can you do?"
@@ -165,7 +165,7 @@ Let's check the app manifest to see how your agent appears in Microsoft 365 Copi
 
 These conversation starters help guide users on how to interact with your agent. You can customize these to match your agent's capabilities.
 
-4️⃣ Notice the **copilotAgents.declarativeAgent** section that defines your agent as a custom engine agent with specific capabilities.
+4️⃣ Notice the **copilotAgents** section that defines your agent as a custom engine agent with specific capabilities.
 
 ### Step 6: Review the Application Entry Point
 
@@ -195,7 +195,7 @@ Let's see how everything comes together in Program.cs.
 
 This creates the connection to Azure OpenAI, which powers the agent's AI capabilities.
 
-## Exercise 2: Configure the Agent
+## Exercise 5: Configure the Agent
 
 Before running the agent, you need to configure it with your Azure AI credentials.
 
@@ -276,7 +276,7 @@ For both sign-ins, use the following credentials:
 > [!Note] **First Time Sign-In**
 > The first time you sign in, you may need to grant permissions to the Microsoft 365 Agents Toolkit extension.
 
-## Exercise 3: Run and Test the Agent
+## Exercise 6: Run and Test the Agent
 
 Now it's time to run the agent and see it in action!
 
@@ -284,9 +284,9 @@ Now it's time to run the agent and see it in action!
 
 Let's run the agent using the F5 debug experience.
 
-1️⃣ In Visual Studio Code, press **F5** or select **Run → Start Debugging** from the menu.
+1️⃣ In Visual Studio Code, click on the **Debug** icon in the Activity Bar (left side) or press **Ctrl+Shift+D**.
 
-2️⃣ When prompted to select a debug target, choose **(Preview) Debug in Copilot (Edge)**.
+2️⃣ From the debug target list, choose **(Preview) Debug in Copilot (Edge)** and then press the Run button (green triangle) or press **F5**.
 
 > [!Hint] **Debug Target Options**
 > You may see multiple options like "Debug in Teams (Edge)", "Debug in Teams (Chrome)", etc. Make sure to select **(Preview) Debug in Copilot (Edge)** to test your agent in Microsoft 365 Copilot.
@@ -299,6 +299,9 @@ Creating a Dev Tunnel requires you to sign in with a Microsoft or work account. 
 
 - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
 - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
+
+> [!Hint]
+> If, after choosing **Work or school account**, you don't see a login prompt, try minimizing Visual Studio Code. The login pop-up often gets opened behind it.
 
 #### Provision Azure Resources
 
@@ -356,19 +359,20 @@ Now let's interact with your agent!
 
 ![Conversation starters in Microsoft 365 Copilot](images/01-build-and-run//BAF1-test2.png)
 
-3️⃣ Try asking: +++"What's today's date?"+++
+> [!Hint] If you get an error, just try again. The first time you deploy the agent, you might get a timeout since it's running locally on your machine.
+
+3️⃣ Try asking: +++What's today's date?+++
 
 The agent should call the **DateTimeFunctionTool** and return the current date and time.
 
-4️⃣ Try asking: +++"What can you do?"+++ or +++"Start over"+++
+4️⃣ Try asking: +++What can you do?+++ or +++Start over+++
 
 The agent should call the **StartConversationPlugin** and show the welcome message again.
 
-5️⃣ Try a general question: +++"Tell me about insurance claims"+++
-
+5️⃣ Try a general question: +++Tell me about insurance claims+++
 The agent should use its AI knowledge to provide a helpful explanation about insurance claims.
 
-6️⃣ Try something outside its scope: +++"What's the weather today?"+++
+6️⃣ Try something outside its scope: +++What's the weather today?+++
 
 The agent should politely indicate that this is outside its scope as an insurance assistant.
 
@@ -378,7 +382,7 @@ The agent should politely indicate that this is outside its scope as an insuranc
 
 2️⃣ Notice logs showing plugin calls, AI responses, and message processing in real-time.
 
-## Exercise 4: Customize Your Agent
+## Exercise 7: Customize Your Agent
 
 Let's make a simple modification to personalize the agent.
 

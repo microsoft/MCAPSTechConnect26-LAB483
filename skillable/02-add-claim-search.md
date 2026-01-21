@@ -1,4 +1,4 @@
-# Exercise 2 - Add Document Search with Azure AI Search
+# Module 2 - Add Document Search with Azure AI Search
 
 In this lab, you'll enhance your Zava Insurance Agent by adding document search capabilities using Azure AI Search. You'll create a ClaimsPlugin that uses AI-powered retrieval to search through insurance claims, retrieve claim details, and identify claims with missing documentation.
 
@@ -11,7 +11,7 @@ In this lab, you'll enhance your Zava Insurance Agent by adding document search 
 
 In this lab, you'll create a **claims index** to store insurance claims data, configure a **knowledge source** to connect your data, and set up a **knowledge base** for unified retrieval. Your ClaimsPlugin will use these components to perform AI-powered searches.
 
-## Exercise 1: Set Up Azure AI Search
+## Exercise 8: Set Up Azure AI Search
 
 Before we add the plugin, let's set up Azure AI Search with sample claims data.
 
@@ -21,7 +21,7 @@ Let's create the Azure AI Search service first.
 
 1️⃣ Go to the Azure Portal by opening the browser in the lab environment and typing the following URL in the address bar: +++https://portal.azure.com+++.
 
-2️⃣ Click **+ Create a resource** → Search for **Azure AI Search** → Click **Create**.
+2️⃣ Click **+ Create a resource** → Search for **Azure Search** → Click **Create**.
 
 > [!Hint]
 > If you can't find it, click on the checkbox **Azure services only**. It should be the first result.
@@ -99,7 +99,12 @@ SECRET_AZURE_AI_SEARCH_API_KEY=your-search-api-key
 > - **Endpoint**: Azure Portal → Your Search Service → Overview → URL
 > - **API Key**: Azure Portal → Your Search Service → Keys → Primary Admin Key
 
-## Exercise 2: Create the KnowledgeBaseService
+### Step 5: Stop the debugger
+Make sure to stop the Visual Studio Code debugger you have launched in the previous exercises and to terminate the running terminal processes, by selecting Terminal in Visual Studio Code and then clicking on the trash icon near the running processes.
+
+![How to terminate running terminals in Visual Studio Code](images/02-add-claim-search/killing-terminal.png)
+
+## Exercise 9: Create the KnowledgeBaseService
 
 The **KnowledgeBaseService** handles all interactions with Azure AI Search, including creating indexes, knowledge sources, knowledge bases, indexing data, and performing AI-powered retrieval.
 
@@ -115,9 +120,9 @@ The **KnowledgeBaseService** handles all interactions with Azure AI Search, incl
 > - **IndexClaimsDataAsync**: Loads and indexes sample claims data from JSON file
 > This service provides complete Azure AI Search functionality with agentic retrieval capabilities.
 
-1️⃣ In VS Code, create a new folder **src/Services**.
+1️⃣ In VS Code, create a new folder under **src** and call it +++Services+++.
 
-2️⃣ Create a new file **src/Services/KnowledgeBaseService.cs** and add the complete implementation:
+2️⃣ Create a new file under **src/Services/** and call it +++KnowledgeBaseService.cs+++ and add the complete implementation:
 
 ```csharp
 using Azure;
@@ -593,7 +598,7 @@ public class KnowledgeBaseService
 }
 ```
 
-## Exercise 3: Create the ClaimsPlugin
+## Exercise 10: Create the ClaimsPlugin
 
 Now let's create the ClaimsPlugin that uses the **KnowledgeBaseService** to provide claim search capabilities to your agent.
 
@@ -781,7 +786,7 @@ namespace ZavaInsurance.Plugins
 }
 ```
 
-## Exercise 4: Register Services and Configure Agent
+## Exercise 11: Register Services and Configure Agent
 
 Now let's wire everything together by registering services in Program.cs and adding the **ClaimsPlugin** to your agent.
 
@@ -913,7 +918,7 @@ Now that we've added claims search capabilities, let's update the welcome messag
 > [!Note] **Progressive feature updates**
 Each lab progressively enhances the welcome message to reflect new capabilities. This ensures users always see an accurate description of what the agent can do at each stage of development.
 
-## Exercise 5: Test the Document Search
+## Exercise 12: Test the Document Search
 
 Now let's test the new claims search capabilities!
 

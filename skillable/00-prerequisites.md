@@ -1,9 +1,8 @@
-# Prerequisites
+# Module 00: Prerequisites
 
 In this lab you will build, test, and deploy as custom engine agent you will develop using the Microsoft 365 Agents SDK and Agents Framework throughout this path.
 
 > [!Alert] These samples and labs are intended for instructive and demonstration purposes and are not intended for use in production. Do not put them into production without upgrading them to production quality.
-
 
 ## Exercise 1 : Setup Microsoft Teams
 
@@ -35,7 +34,7 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
 1️⃣ Open Edge in the lab environment and navigate to the Microsoft Foundry portal by typing the following URL in the address bar: +++https://ai.azure.com+++, then sign in with your Azure account.
 
-2️⃣ In the middle of the page you'll find a section called **Models and experiences**. Inside it, click on the **Go to full model catalog** link.
+2️⃣ In the middle of the page you'll find a section called **Explore models and capabilities**. Inside it, click on the **Go to full model catalog** link.
 ![Open the full model catalog](images/00-prerequisites/full-model-catalog.png)
 
 3️⃣ Using the integrated search bar, look for the **gpt-4.1** model and click on it.
@@ -83,19 +82,21 @@ The insurance domain uses terms like "injury", "collision", "damage" that may tr
 
 5️⃣ Configure the following settings for **Input filters** (what users send):
 
-- **Violence**: Set threshold to **Low**
-- **Hate**: Set threshold to **Low**
-- **Sexual**: Set threshold to **Low**
-- **Self-harm**: Set threshold to **Low**
+> [!Hint] If the screen is too small, you might not see the entire setting bar. Please zoom out or navigate to the right of the screen to find the options mentioned below.
+
+- **Violence**: Set threshold to **Lowest**
+- **Hate**: Set threshold to **Lowest**
+- **Sexual**: Set threshold to **Lowest**
+- **Self-harm**: Set threshold to **Lowest**
 - Prompt shields for jailbreak attacks: Off
 - Prompt shields for indirect attacks: Off
 
 6️⃣ Select **Next** and configure the same settings for **Output filters** (what AI generates):
 
-- **Violence**: Set threshold to **Low**
-- **Hate**: Set threshold to **Low**
-- **Sexual**: Set threshold to **Low**
-- **Self-harm**: Set threshold to **Low**
+- **Violence**: Set threshold to **Lowest**
+- **Hate**: Set threshold to **Lowest**
+- **Sexual**: Set threshold to **Lowest**
+- **Self-harm**: Set threshold to **Lowest**
 - Protected material for text: Off
 - Protected material for code: Off
 - Groundedness (Preview): Off
