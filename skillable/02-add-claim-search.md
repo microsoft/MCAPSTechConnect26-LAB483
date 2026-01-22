@@ -21,7 +21,7 @@ Let's create the Azure AI Search service first.
 
 1️⃣ Go to the Azure Portal by opening the browser in the lab environment and typing the following URL in the address bar: +++https://portal.azure.com+++.
 
-2️⃣ Click **+ Create a resource** → Search for **Azure Search** → Click **Create**.
+2️⃣ Click **+ Create a resource** → Search for **Azure AI Search** → Click **Create**.
 
 > [!Hint]
 > If you can't find it, click on the checkbox **Azure services only**. It should be the first result.
@@ -30,7 +30,7 @@ Let's create the Azure AI Search service first.
 
 - **Resource Group**: Use the same as your Azure AI Foundry project
 - **Service Name**: Choose a unique name (e.g., `zava-insurance-search`)
-- **Region**: It can be any supported location, pick East US 2to match your Foundry project
+- **Region**: It can be any supported location, pick East US 2 to match your Foundry project
 - **Pricing Tier**: Basic
 
 4️⃣ Click **Review + Create** → **Create** (takes 2-3 minutes).
@@ -613,7 +613,7 @@ Now let's create the ClaimsPlugin that uses the **KnowledgeBaseService** to prov
 >
 > Each method has a **[Description]** attribute that tells the AI agent when and how to use the tool. The AI automatically decides which tool to call based on user intent.
 
-1️⃣ Create a new file **src/Plugins/ClaimsPlugin.cs** and add the complete implementation:
+1️⃣ Create a new file in the folder **src/Plugins/** and name it +++ClaimsPlugin.cs+++, then add the complete implementation:
 
 ```csharp
 using Microsoft.Agents.Builder;
