@@ -43,7 +43,7 @@ Let's create the Azure AI Search service first.
 
 Azure AI Search uses a technology called vector search to enable semantic search capabilities. To use vector search, you need to deploy an embedding model in your Azure OpenAI resource, which generates vector representations of your text data.
 
-1️⃣ Go back to the Microsoft Foundry portal (+++https://ai.azure.com)+++.
+1️⃣ Go back to the Microsoft Foundry portal +++https://ai.azure.com+++.
 
 2️⃣ Click on **Model catalog** in the left sidebar.
 
@@ -797,7 +797,7 @@ Now let's wire everything together by registering services in Program.cs and add
 > **Initialization**: Creates index → knowledge source → knowledge base → indexes sample data (must be done in this order)
 > **Error Handling**: Catches initialization errors without stopping the app (useful for development)
 
-1️⃣ Open **src/Program.cs**.
+1️⃣ Open **Program.cs** in the root of the project.
 
 2️⃣ At the top with other using statements, add:
 
