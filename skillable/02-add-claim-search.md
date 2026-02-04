@@ -5,6 +5,7 @@ In this lab, you'll enhance your Zava Insurance Agent by adding document search 
 > [!Help] **Understanding Azure AI Search Concepts**
 >**Azure AI Search** is a cloud search service that provides infrastructure, APIs, and tools for building rich search experiences over your content.
 >**Key Concepts:**
+>
 > - **Search Index**: A searchable collection of documents, similar to a database table. Each index contains documents with fields that can be searched, filtered, and sorted.
 > - **Knowledge Source**: A logical grouping that connects your data to an index. It defines where your data comes from and how it should be indexed.
 > - **Knowledge Base**: A unified interface that brings together multiple knowledge sources, allowing you to search across different data sources with a single query.
@@ -29,7 +30,7 @@ Let's create the Azure AI Search service first.
 3️⃣ Configure:
 
 - **Resource Group**: Use the same as your Azure AI Foundry project
-- **Service Name**: Choose a unique name (e.g., `zava-insurance-search`)
+- **Service Name**: Name it +++zava-insurance-search-@lab.LabInstance.Id+++
 - **Region**: It can be any supported location, pick East US 2 to match your Foundry project
 - **Pricing Tier**: Basic
 
