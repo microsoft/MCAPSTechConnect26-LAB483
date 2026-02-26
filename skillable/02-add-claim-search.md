@@ -32,7 +32,7 @@ Let's create the Azure AI Search service first.
 - **Resource Group**: Use the same as your Azure AI Foundry project
 - **Service Name**: Name it +++zava-insurance-search-@lab.LabInstance.Id+++
 - **Region**: It can be any supported location, pick East US 2 to match your Foundry project
-- **Pricing Tier**: Basic
+- **Pricing Tier**: leave the default one, Standard
 
 4️⃣ Click **Review + Create** → **Create** (takes 2-3 minutes).
 
