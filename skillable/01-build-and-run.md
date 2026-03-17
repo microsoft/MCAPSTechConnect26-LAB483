@@ -134,11 +134,13 @@ Let's check the app manifest to see how your agent appears in Microsoft 365 Copi
 2️⃣ Find the **name** section to see your agent's display name:
 
 ```json
-"name": {
-    "short": "Zava Insurance Agent",
-    "full": "Zava Insurance Claims Assistant"
-}
+  "name": {
+    "short": "${{APP_DISPLAY_NAME}} ${{APP_NAME_SUFFIX}}",
+    "full": "${{APP_DISPLAY_NAME}}: Agent for Insurance claims processing and management."
+  },
 ```
+
+Notice the placeholders (like `${{APP_DISPLAY_NAME}}`): during the first deployment of the agent, the Microsoft 365 Agents Toolkit will create a copy of this manifest file and replace the placeholders with the actual values coming from the registration of the agent.
 
 3️⃣ Scroll down to the **commandLists** array. These are the suggested prompts users see when they first interact with your agent:
 
