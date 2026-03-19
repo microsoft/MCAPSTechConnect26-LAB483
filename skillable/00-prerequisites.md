@@ -61,6 +61,8 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
 1. [] For the Resource group, select **ResourceGroup1** in the dropdown.
 
+1. [] For the Region, select **@lab.CloudResourceGroup(ResourceGroup1).Location**
+
 1. [] Select **Create and continue**.
 
     >[!Note] This will scaffold a new project for you in Microsoft Foundry, it usually takes 3-5 minutes. 
