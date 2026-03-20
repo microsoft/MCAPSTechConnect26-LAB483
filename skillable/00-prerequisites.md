@@ -65,7 +65,8 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
 1. [] Select **Create and continue**.
 
-    >[!Note] This will scaffold a new project for you in Microsoft Foundry, it usually takes 3-5 minutes. 
+    >[!Note] Make sure to use the exact configuration described above (project name, resource group, etc.). If you change anything, the policies applied to the machine will block the creation of the resource.
+    >[!Note] This will scaffold a new project for you in Microsoft Foundry, it usually takes 3-5 minutes.
 
 1. [] Once your project is created, you will be asked to specify a deployment name and type. Leave the default settings and click **Deploy**.
 ![Click on Deploy to deploy the model](images/00-prerequisites/deploy-model.png)
@@ -73,7 +74,7 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 > [!Alert] **Model Selection**
 > Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
 
-**Save Your Credentials**
+#### Save Your Credentials
 
 1. [] In order to get the information you need to connect your agent to the model, click on **Overview** in the left sidebar and focus on the section called **Endpoints and keys**.
 
@@ -81,11 +82,13 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
 1. [] Select the copy button to the right of the **Azure OpenAI endpoint** and then paste it into the text box below. It will look something like **https://user1-58318955-3884-resource.openai.azure.com/**.
 
-	 @lab.TextBox(OpenAIEP)
+    @lab.TextBox(OpenAIEP)
 
 1. [] Select the copy button to the right of the **API Key** and then paste it into the text box below.
 
-	 @lab.TextBox(OpenAIAPIKey)
+    @lab.TextBox(OpenAIAPIKey)
+
+ >[!Note] Make sure to use the Azure OpenAI endpoint, not the Microsoft Foundry one, otherwise the agent won't work.
 
 <!-- 1. [] The **Model Deployment Name** is the name you gave to your gpt-4.1 deployment, which by default is **gpt-4.1**. -->
 
@@ -137,7 +140,6 @@ The insurance domain uses terms like "injury", "collision", "damage" that may tr
 
 > [!Knowledge]  **Why This Is Needed**
 > Insurance claims contain legitimate terms like "injury", "accident", "collision", "bodily harm" that describe real incidents. Default content filters may block these terms. Setting thresholds to **Low** only blocks extreme content while allowing normal insurance terminology.
-
 > [!Hint] **Production Deployments**
 > In production, review your organization's content safety policies and adjust filter settings accordingly. This configuration is for development and testing purposes.
 

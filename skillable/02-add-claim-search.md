@@ -20,7 +20,7 @@ Before we add the plugin, let's set up Azure AI Search with sample claims data.
 
 Let's create the Azure AI Search service first.
 
-1. [] Go to the Azure Portal by opening the browser in the lab environment and typing the following URL in the address bar: +++https://portal.azure.com+++.
+1. [] Go to the Azure Portal by opening the browser in the lab environment and typing the following URL in the address bar: +++https://portal.azure.com+++. If you already have the browser open from the previous exercise, open a new tab.
 
 1. [] Click **+ Create a resource** → Search for +++Azure AI Search+++ → Click **Create -> Azure AI Search**.
 
@@ -34,21 +34,23 @@ Let's create the Azure AI Search service first.
     - **Region**: It can be any supported location, pick **@lab.CloudResourceGroup(ResourceGroup1).Location** to match your Foundry project
     - **Pricing Tier**: **Free**
 
+    >[!Note] Please choose the settings exactly as instructed above, otherwise the security policies applied to the virtual machine will block the deployment.
+
 1. [] Click **Review + Create** → **Create**
 
     >[!Note] The deployment will take 2-3 minutes.
 
-1. [] Once deployed, select **Go to resource** 
+1. [] Once deployed, select **Go to resource**
 
 1. [] On the Overview page, copy the **URL** and paste it into the text box below.
 
-	 @lab.TextBox(SearchURL)
+    @lab.TextBox(SearchURL)
 
-1. [] Then, go to **Settings** > **Keys** 
+1. [] Then, go to **Settings** > **Keys**.
 
 1. [] Copy **Primary Admin Key** and paste it into the text box below.
 
-	 @lab.TextBox(SearchKey)
+    @lab.TextBox(SearchKey)
 
 ### Step 2: Deploy an embedding model
 
@@ -65,7 +67,6 @@ Azure AI Search uses a technology called vector search to enable semantic search
 1. [] Leave the default settings and click on **Deploy**.
 
 This time, you won't have to note down the endpoint and the API Key, since they will be the same we're using to connect our agent to gpt-4.1.
-
 
 ### Step 3: Add Sample Claims Data
 
@@ -105,9 +106,10 @@ Now let's add your Azure AI Search credentials to the project.
 
     ```bash
     SECRET_AZURE_AI_SEARCH_API_KEY=@lab.Variable(SearchKey)
-    ``` 
+    ```
 
 ### Step 5: Stop the debugger
+
 Make sure to stop the Visual Studio Code debugger you have launched in the previous exercises and to terminate the running terminal processes, by selecting Terminal in Visual Studio Code and then clicking on the trash icon near the running processes.
 
 ![How to terminate running terminals in Visual Studio Code](images/02-add-claim-search/killing-terminal.png)
@@ -120,6 +122,7 @@ The **KnowledgeBaseService** handles all interactions with Azure AI Search, incl
 
 > [!Note] **What this code does**
 > The **KnowledgeBaseService** is the core service for Azure AI Search integration:
+>
 > - **Constructor**: Initializes connections to Azure AI Search and Azure OpenAI using configuration
 > - **EnsureClaimsIndexAsync**: Creates the search index with semantic and vector search (required by Knowledge Base API)
 > - **CreateKnowledgeSourcesAsync**: Sets up knowledge source that defines data fields for indexing
@@ -813,14 +816,14 @@ Now let's wire everything together by registering services in Program.cs and add
     using InsuranceAgent.Services;
     ```
 
-1. [] Find **builder.Services.AddSingleton< IStorage, MemoryStorage >();** and add right after:
+1. [] Find **builder.Services.AddSingleton< IStorage, MemoryStorage >();** (approximately around line 71) and add right after:
 
     ```csharp
     // Register Knowledge Base Service for Azure AI Search
     builder.Services.AddSingleton<KnowledgeBaseService>();
     ```
 
-1. [] Find the line **var app = builder.Build();** and add this initialization code right after:
+1. [] Find the line **var app = builder.Build();** (approximately around line 101) and add this initialization code right after:
 
     ```csharp
     // Initialize Azure AI Search Knowledge Base
@@ -862,7 +865,7 @@ Now let's wire everything together by registering services in Program.cs and add
     using InsuranceAgent.Services;
     ```
 
-1. [] Find the **AgentInstructions** property and replace it with the following snippet:
+1. [] Find the **AgentInstructions** property (around line 31) and replace it with the following snippet:
 
     ```csharp
     private readonly string AgentInstructions = """
@@ -880,7 +883,7 @@ Now let's wire everything together by registering services in Program.cs and add
     """;
     ```
 
-1. [] Find the **GetClientAgent** method in **src/Agent/ZavaInsuranceAgent.cs**, locate where **StartConversationPlugin** is created and add the following snippet right after:
+1. [] Find the **GetClientAgent** method in **src/Agent/ZavaInsuranceAgent.cs**, locate where **StartConversationPlugin** is created (approximately around line 124) and add the following snippet right after:
 
     ```csharp
     var scope = _serviceProvider.CreateScope();
@@ -893,7 +896,7 @@ Now let's wire everything together by registering services in Program.cs and add
     ClaimsPlugin claimsPlugin = new(context, knowledgeBaseService, configuration);
     ```
 
-1. [] Find where tools are added (after **toolOptions.Tools.Add(AIFunctionFactory.Create(startConversationPlugin.StartConversation))**) and add:
+1. [] Find where tools are added (after **toolOptions.Tools.Add(AIFunctionFactory.Create(startConversationPlugin.StartConversation))**, approximately around line 134)  and add:
 
     ```csharp
     // Register ClaimsPlugin tools
@@ -907,20 +910,20 @@ Now that we've added claims search capabilities, let's update the welcome messag
 
 1. [] Open **src/Plugins/StartConversationPlugin.cs**.
 
-1. [] Find the **welcomeMessage** variable in the **StartConversation** method and replace it with:
+1. [] Find the **welcomeMessage** variable in the **StartConversation** method (approximately around line 34) and replace it with:
 
     ```csharp
-                var welcomeMessage = "👋 Welcome to Zava Insurance Claims Assistant!\n\n" +
-                                    "I'm your AI-powered insurance claims specialist. I help adjusters and investigators streamline the claims process.\n\n" +
-                                    "**What I can do:**\n\n" +
-                                    "- Search and retrieve detailed claim information\n" +
-                                    "- Provide current date and time\n" +
-                                    "- Answer questions about claims\n\n" +
-                                    "🎯 Try these commands:\n" +
-                                    "1. \"Search for claims with high severity\"\n" +
-                                    "2. \"Get details for claim CLM-2025-001007\"\n" +
-                                    "3. \"Show me recent claims in the Northeast region\"\n\n" +
-                                    "Ready to help with your claims investigation. What would you like to start with?";
+    var welcomeMessage = "👋 Welcome to Zava Insurance Claims Assistant!\n\n" +
+                        "I'm your AI-powered insurance claims specialist. I help adjusters and investigators streamline the claims process.\n\n" +
+                        "**What I can do:**\n\n" +
+                        "- Search and retrieve detailed claim information\n" +
+                        "- Provide current date and time\n" +
+                        "- Answer questions about claims\n\n" +
+                        "🎯 Try these commands:\n" +
+                        "1. \"Search for claims with high severity\"\n" +
+                        "2. \"Get details for claim CLM-2025-001007\"\n" +
+                        "3. \"Show me recent claims in the Northeast region\"\n\n" +
+                        "Ready to help with your claims investigation. What would you like to start with?";
     ```
 
 > [!Note] **Progressive feature updates**
@@ -938,7 +941,7 @@ Now let's test the new claims search capabilities!
 
 1. [] Watch the terminal output - you should see:
 
-    ```
+    ```text
     🔍 Initializing Azure AI Search Knowledge Base...
     📝 Creating claims index 'claims-index'...
     ✅ Claims index 'claims-index' created successfully

@@ -19,20 +19,20 @@ Let's start by cloning the lab repository and navigating to the Agent Framework 
 
 1. [] Open a terminal or command prompt.
 
-1. [] Type the following command to move into the C: folder:
+1. [] Type the following command and press Enter to move into the C: folder:
 
     ```bash
     cd C:\
-    ``` 
+    ```
 
-1. [] Clone the repository:
+1. [] Clone the repository by typing the two following commands and pressing Enter:
 
     ```bash
     git clone https://github.com/microsoft/MCAPSTechConnect26-LAB483.git
     cd MCAPSTechConnect26-LAB483/src/agent-framework/begin
     ```
 
-1. [] Open the project in Visual Studio Code:
+1. [] Open the project in Visual Studio Code by typing the following command and pressing Enter
 
     ```bash
     code .
@@ -46,7 +46,7 @@ Let's understand the organization of the agent project.
 
 1. [] In Visual Studio Code, expand the folders in the Explorer view. You should see this structure:
 
-    ```
+    ```text
     begin/
     ├── src/
     │   ├── Agent/
@@ -61,7 +61,6 @@ Let's understand the organization of the agent project.
     ├── InsuranceAgent.csproj               # Project file
     └── m365agents.local.yml                # M365 Agents provisioning config
     ```
-
 
 ### Step 3: Understand the Agent Implementation
 
@@ -140,7 +139,7 @@ Let's check the app manifest to see how your agent appears in Microsoft 365 Copi
     },
     ```
 
-    >[!Note] Notice the placeholders (like `${{APP_DISPLAY_NAME}}`): during the first deployment of the agent, the Microsoft 365 Agents Toolkit will create a copy of this manifest file and replace the placeholders with the actual values coming from the registration of the agent.
+    >[!Note] Notice the placeholders (like `${{APP_DISPLAY_NAME}}`): during the first deployment of the agent, the Microsoft 365 Agents Toolkit will create a copy of this manifest file and replace the placeholders with the actual values coming from the registration of the agent, which are stored in the .env.local and env.local.user files.
 
 1. [] Scroll down to the **commandLists** array. These are the suggested prompts users see when they first interact with your agent:
 
@@ -166,7 +165,6 @@ Let's check the app manifest to see how your agent appears in Microsoft 365 Copi
     ```
 
 >[!Note] These conversation starters help guide users on how to interact with your agent. You can customize these to match your agent's capabilities.
-
 >[!Note] Notice the **copilotAgents** section that defines your agent as a custom engine agent with specific capabilities.
 
 ### Step 6: Review the Application Entry Point
@@ -212,13 +210,13 @@ The agent uses environment files to store configuration. Let's set them up.
     - **.env.local.sample**
     - **.env.local.user.sample**
 
-1. [] Return to your command window and copy **.env.local.sample** to **.env.local** by running the following command:
+1. [] Return to your terminal and copy **.env.local.sample** to **.env.local** by running the following command and pressing Enter:
 
     ```powershell
     Copy-Item env/.env.local.sample env/.env.local
     ```
 
-1. [] Copy **.env.local.user.sample** to **.env.local.user** by running the following command:
+1. [] Copy **.env.local.user.sample** to **.env.local.user** by running the following command and pressing Enter:
 
     ```powershell
     Copy-Item env/.env.local.user.sample env/.env.local.user
@@ -267,7 +265,6 @@ The Microsoft 365 Agents Toolkit needs to authenticate with both Microsoft 365 a
 
 > [!Note] **Sign-in to this app only**
 > The first time you sign in, Windows might ask you if you want to sign in to all apps, websites and services on this device. Choose **No, this app only**.
-
 > [!Note] **First Time Sign-In**
 > The first time you sign in, you may need to grant permissions to the Microsoft 365 Agents Toolkit extension.
 
@@ -285,6 +282,8 @@ Let's run the agent using the F5 debug experience.
 
     > [!Hint] **Debug Target Options**
     > You may see multiple options like "Debug in Teams (Edge)", "Debug in Teams (Chrome)", etc. Make sure to select **(Preview) Debug in Copilot (Edge)** to test your agent in Microsoft 365 Copilot.
+    > [!Note] **Missing Debug Target Options**
+    > If you don't see the **(Preview) Debug in Copilot (Edge)** target options, go back to Step 1 and make sure to open Visual Studio Code on the **C:/MCAPSTechConnect26-LAB483/src/agent-framework/begin** folder.
 
 1. [] The first time you run the agent, the Microsoft 365 Agents Toolkit will:
 
@@ -299,11 +298,13 @@ Creating a Dev Tunnel requires you to sign in with a Microsoft or work account. 
 
 #### Provision Azure Resources
 
-In order to provision the resources, Visual Studio Code will ask you to create a new **resource group** or select existing one. 
+In order to provision the resources, Visual Studio Code will ask you to create a new **resource group** or select existing one.
 
-1. [] Click on  **ResourceGroup1**. 
+1. [] Click on **ResourceGroup1**.
 
 1. [] Click on **Provision** to confirm when asked.
+
+ > [!Note] Make sure to select **ResourceGroup1** as resource group. Deploying the resources to another resource group will be blocked by the security policies applied to the virtual machine.
 
 #### Create a service principal
 
@@ -314,8 +315,10 @@ The toolkit will create a service principal to manage authentication with the Az
 
 >[!Alert] If, after choosing **Work or school account**, you don't see a login prompt, try minimizing Visual Studio Code. The login pop-up often gets opened behind it.
 
-The script will ask you also to select an Azure subscription in the terminal. 
+The script will ask you also to select an Azure subscription in the terminal.
 Type +++1+++ to select the only subscription available in the lab environment and press **Enter**.
+
+ > [!Note] Pay attention to the terminal in Visual Studio Code. The deployment won't move forward until you type +++1+++ to select the Azure subscription.
 
 This provisioning process usually takes 2-3 minutes.
 
@@ -328,7 +331,7 @@ This provisioning process usually takes 2-3 minutes.
 
 1. [] Watch the **Terminal** output in Visual Studio Code. You should see:
 
-    ```
+    ```text
     🌍 Environment: local
     🏢 Starting Zava Insurance Agent...
     🤖 Main agent using model: gpt-4.1
@@ -354,7 +357,7 @@ Now let's interact with your agent!
 
     ![Conversation starters in Microsoft 365 Copilot](images/01-build-and-run//BAF1-test2.png)
 
-    > [!Hint] If you get an error, just try again. The first time you deploy the agent, you might get a timeout since it's running locally on your machine.
+    > [!Hint] If you get an error, just try again. The first time you deploy the agent, you might get a timeout since it's running locally on your machine. If you still get an error or strange messages like {{Message.StartConversationPlugin}}, just move on and try the next prompts.
 
 1. [] Try asking: +++What's today's date?+++
 
@@ -396,7 +399,7 @@ You have completed the task Build and Run Your First Agent!
 
 You've learned how to:
 
-- ✅ Clone and explore an Agent Framework project
+- ✅ Clone and explore an Agent Framework projecta
 - ✅ Configure the agent with Azure AI credentials
 - ✅ Run and debug the agent locally
 - ✅ Test the agent in Microsoft 365 Copilot
