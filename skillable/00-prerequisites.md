@@ -90,7 +90,7 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
     @lab.TextBox(OpenAIAPIKey)
 
- >[!Note] Make sure to use the Azure OpenAI endpoint, not the Microsoft Foundry one, otherwise the agent won't work.
+   >[!Note] Make sure to use the Azure OpenAI endpoint, not the Microsoft Foundry one, otherwise the agent won't work.
 
 <!-- 1. [] The **Model Deployment Name** is the name you gave to your gpt-4.1 deployment, which by default is **gpt-4.1**. -->
 
