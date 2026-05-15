@@ -63,7 +63,7 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
 1. [] For the Region, select **@lab.CloudResourceGroup(ResourceGroup1).Location**
 
-    >[!Note] If the step above says to use West US2 and you receive an error, please select another region.
+    >[!Note] If the step above says to use West US2, West US, East US, or East US2 and you receive an error, please select another region.
 
 1. [] Select **Create and continue**.
 
