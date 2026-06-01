@@ -60,6 +60,8 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
 1. [] For the project name, enter +++User1-@lab.LabInstance.Id+++
 
+  >[!Alert] Confirm that the project name matches the above exactly. If you receive an error regarding a policy, please confirm that you have used the correct name above.
+
 1. [] Below the Project name, select **Advanced options**
 
 1. [] For the Resource group, select **ResourceGroup1** in the dropdown.
