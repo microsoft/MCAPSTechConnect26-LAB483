@@ -44,6 +44,9 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
     - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
     - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
 
+    >[!Alert] Confirm that New Foundry is **Not Selected**.
+    <img width="114" height="44" alt="image" src="https://github.com/user-attachments/assets/6a50eaed-348f-4756-bd41-a8fb6cc67795" />
+
 1. [] In the middle of the page you'll find a section called **Explore models and capabilities**. Inside it, click on the **Go to full model catalog** link.
 ![Open the full model catalog](images/00-prerequisites/full-model-catalog.png)
 
