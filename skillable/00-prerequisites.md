@@ -37,14 +37,14 @@ Use them every time you are prompted to sign in to Azure or to Microsoft Foundry
 
 For this lab path, you'll need a Microsoft Foundry project with a deployed language model.
 
-1. [] Open Edge in the lab environment and navigate to the Microsoft Foundry portal by typing the following URL in the address bar: +++https://ai.azure.com+++.
+1. [] Open Edge in the lab environment and navigate to the Microsoft Foundry portal by typing the following URL in the address bar: +++https://ai.azure.com/foundry+++.
 
 1. [] In the top right, select **Sign in** then sign in with your Azure account.
 
     - **Username**: +++@lab.CloudPortalCredential(User1).Username+++
     - **Temporary Access Pass**: +++@lab.CloudPortalCredential(User1).TAP+++
 
-    >[!Alert] Confirm that New Foundry is **Not Selected**.
+    >[!Alert] On the **Create Project** popup, if you see errors, close it and then confirm that New Foundry is **Not Selected**.
     <img width="114" height="44" alt="image" src="https://github.com/user-attachments/assets/6a50eaed-348f-4756-bd41-a8fb6cc67795" />
 
 1. [] In the middle of the page you'll find a section called **Explore models and capabilities**. Inside it, click on the **Go to full model catalog** link.
