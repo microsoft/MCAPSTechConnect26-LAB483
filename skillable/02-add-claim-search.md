@@ -46,7 +46,7 @@ Let's create the Azure AI Search service first.
 
     @lab.TextBox(SearchURL)
 
-1. [] Then, go to **Settings** > **Keys**.
+1. [] Then, go to **Security + networking** > **Keys**.
 
 1. [] Copy **Primary Admin Key** and paste it into the text box below.
 
@@ -58,6 +58,9 @@ Azure AI Search uses a technology called vector search to enable semantic search
 
 1. [] Go back to the Microsoft Foundry portal +++https://ai.azure.com+++.
 
+    >[!Alert] You may need to go to the Foundry Home page and switch to classic Foundry to see the Model catalog option.
+    <img width="114" height="44" alt="image" src="https://github.com/user-attachments/assets/6a50eaed-348f-4756-bd41-a8fb6cc67795" />
+
 1. [] Click on **Model catalog** in the left sidebar.
 
 1. [] Use the search bar to find the +++text-embedding-ada-002+++ model.
@@ -66,7 +69,7 @@ Azure AI Search uses a technology called vector search to enable semantic search
 
 1. [] Leave the default settings and click on **Deploy**.
 
-This time, you won't have to note down the endpoint and the API Key, since they will be the same we're using to connect our agent to gpt-4.1.
+This time, you won't have to note down the endpoint and the API Key, since they will be the same we're using to connect our agent to gpt-5.1.
 
 ### Step 3: Add Sample Claims Data
 
@@ -295,7 +298,7 @@ The **KnowledgeBaseService** handles all interactions with Azure AI Search, incl
 
         /// <summary>
         /// Creates knowledge base with LLM model configuration for answer synthesis
-        /// Uses gpt-4.1 to generate natural language answers from retrieved documents
+        /// Uses gpt-5.1 to generate natural language answers from retrieved documents
         /// </summary>
         public async Task CreateKnowledgeBaseAsync()
         {
@@ -305,7 +308,7 @@ The **KnowledgeBaseService** handles all interactions with Azure AI Search, incl
                 .AddJsonFile("appsettings.local.json", optional: true)
                 .Build();
             
-            var modelName = config["AIModels:LanguageModel:Name"] ?? "gpt-4.1";
+            var modelName = config["AIModels:LanguageModel:Name"] ?? "gpt-5.1";
             
             // Configure Azure OpenAI model parameters for the knowledge base
             var aoaiParams = new AzureOpenAIVectorizerParameters
@@ -427,7 +430,7 @@ The **KnowledgeBaseService** handles all interactions with Azure AI Search, incl
         /// <returns>Raw AI response without Knowledge Base processing</returns>
         public async Task<string> GetDirectChatCompletionAsync(string systemPrompt, string userPrompt, string? modelName = null)
         {
-            var model = modelName ?? _configuration["AIModels:LanguageModel:Name"] ?? "gpt-4.1";
+            var model = modelName ?? _configuration["AIModels:LanguageModel:Name"] ?? "gpt-5.1";
             var chatClient = _openAIClient.GetChatClient(model);
 
             var messages = new List<OpenAI.Chat.ChatMessage>
@@ -946,7 +949,7 @@ Now let's test the new claims search capabilities!
     📝 Creating claims index 'claims-index'...
     ✅ Claims index 'claims-index' created successfully
     ✅ Knowledge source 'claims-knowledge-source' created
-    ✅ Knowledge base 'zava-insurance-kb' created with model 'gpt-4.1'
+    ✅ Knowledge base 'zava-insurance-kb' created with model 'gpt-5.1'
     📝 Indexing sample claims...
     ✅ Indexed 35 claims
     ✅ Sample data indexed successfully
