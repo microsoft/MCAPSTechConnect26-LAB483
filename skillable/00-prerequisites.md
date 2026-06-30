@@ -50,7 +50,7 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 1. [] In the middle of the page you'll find a section called **Explore models and capabilities**. Inside it, click on the **Go to full model catalog** link.
 ![Open the full model catalog](images/00-prerequisites/full-model-catalog.png)
 
-1. [] Using the integrated search bar, look for the +++gpt-4.1+++ model and click on it.
+1. [] Using the integrated search bar, look for the +++gpt-5.1+++ model and click on it.
 ![The Microsoft Foundry model catalog](images/00-prerequisites/model-catalog.png)
 
 1. [] From the top bar, choose **Use this model**.
@@ -66,6 +66,8 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
 1. [] For the Resource group, select **ResourceGroup1** in the dropdown.
 
+    >[!Alert] Confirm ResourceGroup1 is selected as the default resource group will always cause a policy error.
+
 1. [] For the Region, select **@lab.CloudResourceGroup(ResourceGroup1).Location**
 
     >[!Note] If the step above says to use West US2, West US, East US, or East US2 and you receive an error, please select another region.
@@ -79,7 +81,7 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 ![Click on Deploy to deploy the model](images/00-prerequisites/deploy-model.png)
 
 > [!Alert] **Model Selection**
-> Please use **gpt-4.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-4.1. Using other models may lead to unexpected behavior.
+> Please use **gpt-5.1** for a smooth experience . The labs use knowledge base answer synthesis which is optimized for gpt-5.1. Using other models may lead to unexpected behavior.
 
 #### Save Your Credentials
 
@@ -95,9 +97,9 @@ For this lab path, you'll need a Microsoft Foundry project with a deployed langu
 
     @lab.TextBox(OpenAIAPIKey)
 
-   >[!Note] Make sure to use the Azure OpenAI endpoint, not the Microsoft Foundry one, otherwise the agent won't work.
+    >[!Note] Make sure to use the Azure OpenAI endpoint, not the Microsoft Foundry one, otherwise the agent won't work.
 
-<!-- 1. [] The **Model Deployment Name** is the name you gave to your gpt-4.1 deployment, which by default is **gpt-4.1**. -->
+<!-- 1. [] The **Model Deployment Name** is the name you gave to your gpt-5.1 deployment, which by default is **gpt-5.1**. -->
 
 ![The endpoints and keys in the Microsoft Foundry portal](images/00-prerequisites/endpoints.png)
 
@@ -135,11 +137,10 @@ The insurance domain uses terms like "injury", "collision", "damage" that may tr
     - **Self-harm**: Set threshold to **Lowest**
     - Protected material for text: Off
     - Protected material for code: Off
-    - Groundedness (Preview): Off
 
 1. [] Select **Next**.
 
-1. [] In Apply filter to deployments, select your **gpt-4.1** deployment.
+1. [] In Apply filter to deployments, select your **gpt-5.1** deployment.
 
 1. [] Select **Replace** to apply the new filter to the deployment.
 
