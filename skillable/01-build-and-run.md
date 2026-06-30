@@ -304,7 +304,7 @@ In order to provision the resources, Visual Studio Code will ask you to create a
 
 1. [] Click on **Provision** to confirm when asked.
 
- > [!Note] Make sure to select **ResourceGroup1** as resource group. Deploying the resources to another resource group will be blocked by the security policies applied to the virtual machine.
+    > [!Note] Make sure to select **ResourceGroup1** as resource group. Deploying the resources to another resource group will be blocked by the security policies applied to the virtual machine.
 
 #### Create a service principal
 
@@ -318,7 +318,7 @@ The toolkit will create a service principal to manage authentication with the Az
 The script will ask you also to select an Azure subscription in the terminal.
 Type +++1+++ to select the only subscription available in the lab environment and press **Enter**.
 
- > [!Note] Pay attention to the terminal in Visual Studio Code. The deployment won't move forward until you type +++1+++ to select the Azure subscription.
+> [!Note] Pay attention to the terminal in Visual Studio Code. The deployment won't move forward until you type +++1+++ to select the Azure subscription.
 
 This provisioning process usually takes 2-3 minutes.
 
