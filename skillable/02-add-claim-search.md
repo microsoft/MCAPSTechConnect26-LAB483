@@ -940,6 +940,14 @@ Now let's test the new claims search capabilities!
 
 1. [] Press **F5** in VS Code to start debugging.
 
+    >[!alert] ![Could not find debuggable target](images/02-add-claim-search/could-not-find-debuggable-target.png)
+    >
+    >If you see this error, make sure you've stopped the debugger. End the terminal processes by selecting the **Terminal** tab in the bottom pane of VS Code, then select the trash icon to the right of the running processes.
+    >
+    >![How to terminate running terminals in Visual Studio Code](images/02-add-claim-search/killing-terminal.png)
+    >
+    >If you're still having issues, close any open Edge debugging window, restart VS Code, then try again.
+
 1. [] Select **(Preview) Debug in Copilot (Edge)** if prompted.
 
 1. [] Watch the terminal output - you should see:
