@@ -349,13 +349,7 @@ This provisioning process usually takes 2-3 minutes.
 
 Now let's interact with your agent!
 
-1. [] In Microsoft 365 Copilot, you should see your agent with conversation starters in your chat window.
-
-    ![Conversation starters in Microsoft 365 Copilot](images/01-build-and-run/BAF1-test1.png)
-
-1. [] Select "What can you do?" to see the welcome message:
-
-    ![Conversation starters in Microsoft 365 Copilot](images/01-build-and-run//BAF1-test2.png)
+1. [] In Microsoft 365 Copilot, try asking: +++What can you do?+++
 
     > [!Hint] If you get an error, just try again. The first time you deploy the agent, you might get a timeout since it's running locally on your machine. If you still get an error or strange messages like {{Message.StartConversationPlugin}}, just move on and try the next prompts.
 
