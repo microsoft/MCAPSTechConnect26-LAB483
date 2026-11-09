@@ -1,7 +1,7 @@
-{
-  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.22/MicrosoftTeams.schema.json",
-  "manifestVersion": "1.22",
-  "version": "1.0.4",
+{  
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.25/MicrosoftTeams.schema.json",  
+  "manifestVersion": "1.25",  
+  "version": "1.0.5",
   "id": "${{TEAMS_APP_ID}}",
   "developer": {
     "name": "M365 Developer Advocates",
@@ -22,6 +22,7 @@
     "full": "${{APP_DISPLAY_NAME}}: Agent for Insurance claims processing and management."
   },
   "accentColor": "#FFFFFF",
+  "supportsChannelFeatures": "tier1",
   "bots": [
     {
       "botId": "${{BOT_ID}}",
