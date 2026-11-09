@@ -38,7 +38,7 @@ Let's start by cloning the lab repository and navigating to the Agent Framework 
     code .
     ```
 
-    >[!Alert] Select **Restricted Mode** in the bottom right. On the pop-up, select **Trust**, then close the pop-up.
+    >[!Alert] Select **Restricted Mode** in the bottom left. On the pop-up, select **Trust**, then close the pop-up.
 
 ### Step 2: Explore the Project Structure
 
